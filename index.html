@@ -1,1 +1,110 @@
-<h1>qwq</h1>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人博客</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        nav {
+            background-color: #444;
+            padding: 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #00ff9d;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 2rem;
+        }
+
+        .blog-post {
+            background-color: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .post-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>我的技术博客</h1>
+        <p>分享编程经验和学习心得</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">关于我</a></li>
+            <li><a href="#">联系</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <article class="blog-post">
+            <h2>我的第一个HTML项目</h2>
+            <p class="post-date">发布日期：2023年10月1日</p>
+            <p>今天开始学习HTML和CSS，创建了我的第一个网页...</p>
+        </article>
+
+        <article class="blog-post">
+            <h2>CSS布局技巧</h2>
+            <p class="post-date">发布日期：2023年10月5日</p>
+            <p>分享几个实用的CSS布局技巧，包括Flexbox和Grid布局...</p>
+        </article>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 我的个人博客. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
