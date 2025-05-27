@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>吾之野望のBlog</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .announcement-banner {
+            background: rgba(255, 204, 222, 0.5);
+            border: 1px solid var(--primary-pink);
+            padding: 1rem;
+            border-radius: 12px;
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(8px);
+            animation: slideIn 0.6s ease-out;
+        }
+
+        .article-preview {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 105, 180, 0.2);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .article-preview:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .article-preview:hover {
+            transform: translateX(8px);
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+            flex-wrap: wrap;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        .article-date {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 12px;
+            color: var(--secondary-pink);
+        }
+
+        .article-date svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--secondary-pink);
+        }
+
+        .article-title {
+            color: var(--secondary-pink);
+            margin: 0.5rem 0 1rem 0;
+            font-size: 1.2rem;
+            line-height: 1.4;
+            display: inline-block;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .article-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(255,105,180,0) 0%, var(--primary-pink) 50%, rgba(255,105,180,0) 100%);
+        }
+
+        .article-excerpt {
+            color: var(--text-color);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.3rem 1rem;
+            background: var(--primary-pink);
+            color: white;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: var(--transition);
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            box-shadow: 4px 4px 0 rgba(255, 105, 180, 0.2);
+        }
+
+        .read-more:hover {
+            background: var(--secondary-pink);
+            transform: translateX(5px);
+            box-shadow: 6px 6px 0 rgba(255, 105, 180, 0.3);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="home-sidebar">
+        <div class="sidebar-header">
+            <img src="波奇酱3-1.jpg" alt="头像" class="avatar">
+            <h2 class="sidebar-name">吾之野望</h2>
+            <p class="sidebar-bio">畅游游戏世界，重塑数字生活</p>
+        </div>
+
+        <nav class="sidebar-links">
+            <a href="index.html" class="active">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+                首页
+            </a>
+            <a href="about.html">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+                关于
+            </a>
+            <a href="notes.html">
+                <svg viewBox="0 0 24 24">
+                    <path d="M14 17H4v2h10v-2zm6-8H4v2h16V9zM4 5h16v2H4V5z"/>
+                </svg>
+                笔记
+            </a>
+            <a href="https://space.bilibili.com/233399930/upload/opus"
+                target="_blank" 
+                rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                </svg>
+                文章
+            </a>
+            <a href="https://store.steampowered.com/curator/45339980/"
+                target="_blank" 
+                rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                </svg>
+                鉴赏
+            </a>
+            <a href="games.html">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 12c0-1.1.9-2 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v4c1.1 0 2 .9 2 2v6c0 1.1.9 2 2 2h8v-6H8v-2h8v2h2zm-6-8h2v4h-2V4zm-4 0h2v4h-2V4zm8 14h-8v-6h8v6z"/>
+                </svg>
+                游戏馆
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="https://github.com/AmbitionMjl9201" class="sidebar-footer-link" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.68-.22.68-.48 0-.24-.01-1.04-.01-2.04-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.88 1.53 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.68.92.68 1.85 0 1.34-.01 2.41-.01 2.74 0 .26.18.58.69.48A10 10 0 0 0 12 2z"/>
+                </svg>
+                GitHub
+            </a>
+            <a href="https://steamcommunity.com/id/AmbitionMjl9201/" class="sidebar-footer-link" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M17.7 8.34l-1.23 4.72L21 16.7l-4.75-.61L17.7 8.34m-7.4-.97L5.3 13.06l-4.1-1.68L8.66 6.7l2.64.66M19 2.01L7.85 5.56 3.12 1.24 19 2.01M1.92 15.01l2.84-2.82 1.43 1.43-2.84 2.82-1.43-1.43m18.73-1.43l-1.43-1.43 2.84-2.82 1.43 1.43-2.84 2.82M11 18.96l-6-2.25 1.33-3.64 6 2.25-1.33 3.64"/>
+                </svg>
+                Steam
+            </a>
+            <a href="https://space.bilibili.com/233399930" class="sidebar-footer-link" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                </svg>
+                Bilibili
+            </a>
+        </div>
+    </aside>
+
+    <main class="home-container">
+        <div class="glass-card">
+            <div class="announcement-banner">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#FF1493">
+                    <path d="M20 17.17L18.83 16H4V4h16v12.17zM15 9h2v2h-2V9zm-4 0h2v2h-2V9zm-4 0h2v2H7V9zm8 6h-2v2h2v-2zm-4 0h-2v2h2v-2zm-4 0H7v2h2v-2z"/>
+                </svg>
+                <span>网站目前仍在不断完善中，欢迎体验新功能并反馈建议~</span>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h3 class="section-title">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="#FF1493">
+                    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-4 12H8v-1h8v1zm0-3H8v-1h8v1zm0-3H8V8h8v1zm-4 6H8v-1h4v1z"/>
+                </svg>
+                最新内容
+            </h3>
+
+            <article class="article-preview">
+                <div class="article-meta">
+                    <time class="article-date" datetime="2025-05-25">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-11H9v2h4v3h2V9h4V7h-6V4h-2v3z" fill="#FF1493"/>
+                        </svg>
+                        2025.05.16
+                    </time>
+                </div>
+                <h4 class="article-title">被机械论害了</h4>
+                <p class="article-excerpt">这辈子就是被机械论害了。在机械论的世界观里，世界是一台精密的机器，当“神”（最高意志）波动发条，一切都会尽然有序地运行。也就是说，作为相信机械论的人，认为任何事件的发生都有其明确的前因后果...</p>
+                <a href="notes/被机械论害了.html" class="read-more">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="white"/>
+                    </svg>
+                    阅读全文
+                </a>
+            </article>
+
+            <article class="article-preview">
+                <div class="article-meta">
+                    <time class="article-date" datetime="2025-05-27">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-11H9v2h4v3h2V9h4V7h-6V4h-2v3z" fill="#FF1493"/>
+                        </svg>
+                        2025.03.19
+                    </time>
+                </div>
+                <h4 class="article-title">好想成为一个通讯录</h4>
+                <p class="article-excerpt">我真的是一个“宅男”。我沉浸在自己的世界，天天玩游戏看二次元，最近还染上了拼模型，我像宅男一样，很阴暗不爱说话，上次鼓起勇气和同学去漫展，因为一直手机打字交流，被戏称为“闪光的指压师”（命运石之门里面的桐生萌郁，靠手机和别人交流）……</p>
+                <a href="notes/好想成为一个通讯录.html" class="read-more">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="white"/>
+                    </svg>
+                    阅读全文
+                </a>
+            </article>
+        </div>
+
+        <button class="back-to-top" onclick="scrollToTop()">
+            <svg viewBox="0 0 24 24">
+                <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+            </svg>
+        </button>
+    </main>
+
+    <script>
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        document.querySelector('.avatar').addEventListener('click', () => {
+            window.open('https://space.bilibili.com/233399930', '_blank');
+        });
+    </script>
+</body>
+</html>

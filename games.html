@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏记录 - 吾之野望のBlog</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --platform-steam: #1B2838;
+            --platform-ps: #003791;
+            --platform-xbox: #107C10;
+            --platform-ns: #E60012;
+        }
+
+        .game-filters {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.2rem;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            cursor: pointer;
+            background: rgba(255, 105, 180, 0.1);
+            transition: var(--transition);
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 4px 4px 0 rgba(255, 105, 180, 0.2);
+        }
+
+        .filter-btn.active {
+            border-color: var(--primary-pink);
+            background: var(--primary-pink);
+            color: white;
+        }
+
+        .game-table-container {
+            margin-top: 1.5rem;
+        }
+
+        .game-row {
+            display: grid;
+            grid-template-columns: 3fr 1fr 1fr 1.5fr 0.8fr;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem;
+            margin: 0.5rem 0;
+            border-radius: 12px;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .game-row:hover {
+            transform: translateX(8px);
+        }
+
+        .platform-tag {
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+            color: white;
+            width: fit-content;
+        }
+
+        .search-container {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+
+        .game-search {
+            width: 100%;
+            padding: 0.8rem 3.5rem 0.8rem 1.2rem;
+            border: 2px solid var(--primary-pink);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .game-search:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            fill: var(--secondary-pink);
+        }
+
+        .excel-integration {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--card-bg);
+            border: 2px solid var(--primary-pink);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .excel-link {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 8px;
+            color: var(--secondary-pink);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .excel-link:hover {
+            background: var(--primary-pink);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .excel-link svg path {
+            transition: fill 0.3s ease;
+        }
+
+        .excel-link:hover svg path {
+            fill: white;
+        }
+
+        .export-icon {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--bg-color);
+            padding: 0.6rem;
+            border-radius: 8px;
+            box-shadow: 4px 4px 0 rgba(255, 105, 180, 0.1);
+        }
+
+        .data-update {
+            font-size: 0.85rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-left: auto;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 768px) {
+            .game-row {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+                padding: 1rem;
+            }
+
+            .excel-integration {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+
+            .export-icon {
+                position: static;
+                margin-top: 0.8rem;
+                transform: none;
+            }
+
+            .data-update {
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="home-sidebar">
+        <div class="sidebar-header">
+            <img src="波奇酱3-1.jpg" alt="头像" class="avatar">
+            <h2 class="sidebar-name">吾之野望</h2>
+            <p class="sidebar-bio">畅游游戏世界，重塑数字生活</p>
+        </div>
+
+        <nav class="sidebar-links">
+            <a href="index.html">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+                首页
+            </a>
+            <a href="about.html">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+                关于
+            </a>
+            <a href="notes.html">
+                <svg viewBox="0 0 24 24">
+                    <path d="M14 17H4v2h10v-2zm6-8H4v2h16V9zM4 5h16v2H4V5z"/>
+                </svg>
+                笔记
+            </a>
+            <a href="https://space.bilibili.com/233399930/upload/opus" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                </svg>
+                文章
+            </a>
+            <a href="https://store.steampowered.com/curator/45339980/" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                </svg>
+                鉴赏
+            </a>
+            <a href="games.html" class="active">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 12c0-1.1.9-2 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v4c1.1 0 2 .9 2 2v6c0 1.1.9 2 2 2h8v-6H8v-2h8v2h2zm-6-8h2v4h-2V4zm-4 0h2v4h-2V4zm8 14h-8v-6h8v6z"/>
+                </svg>
+                游戏馆
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="https://github.com/AmbitionMjl9201" target="_blank" class="sidebar-footer-link">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.68-.22.68-.48 0-.24-.01-1.04-.01-2.04-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.88 1.53 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.68.92.68 1.85 0 1.34-.01 2.41-.01 2.74 0 .26.18.58.69.48A10 10 0 0 0 12 2z"/>
+                </svg>
+                GitHub
+            </a>
+            <a href="https://steamcommunity.com/id/AmbitionMjl9201/" target="_blank" class="sidebar-footer-link">
+                <svg viewBox="0 0 24 24">
+                    <path d="M17.7 8.34l-1.23 4.72L21 16.7l-4.75-.61L17.7 8.34m-7.4-.97L5.3 13.06l-4.1-1.68L8.66 6.7l2.64.66M19 2.01L7.85 5.56 3.12 1.24 19 2.01M1.92 15.01l2.84-2.82 1.43 1.43-2.84 2.82-1.43-1.43m18.73-1.43l-1.43-1.43 2.84-2.82 1.43 1.43-2.84 2.82M11 18.96l-6-2.25 1.33-3.64 6 2.25-1.33 3.64"/>
+                </svg>
+                Steam
+            </a>
+            <a href="https://space.bilibili.com/233399930" target="_blank" class="sidebar-footer-link">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                </svg>
+                Bilibili
+            </a>
+        </div>
+    </aside>
+
+    <main class="home-container">
+        <div class="excel-integration">
+            <a href="https://docs.qq.com/sheet/DWkF0bVhSWW5Pbm1m?tab=BB08J2" target="_blank" class="excel-link">
+                <svg viewBox="0 0 24 24" style="width: 24px; height: 24px;">
+                    <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                </svg>
+                完整游戏记录Excel
+            </a>
+            
+            <div class="export-icon">
+                <svg viewBox="0 0 24 24" style="width: 28px; height: 28px; fill: var(--secondary-pink);">
+                    <path d="M13 5v6.11l2 2V5c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V9l-5-5zm-2 14V9h8v10H6v-4h3v4h2zm4-6V7h-4v6h4z"/>
+                </svg>
+            </div>
+            
+        </div>
+
+        <div class="glass-card">
+            <div class="search-container">
+                <input type="text" class="game-search" placeholder="输入游戏名/关键词...">
+                <svg class="search-icon" viewBox="0 0 24 24">
+                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
+            </div>
+
+            <div class="game-filters">
+                <div class="filter-btn active" data-filter="all">全部平台</div>
+                <div class="filter-btn" data-filter="steam">Steam</div>
+                <div class="filter-btn" data-filter="ps">PlayStation</div>
+                <div class="filter-btn" data-filter="xbox">Xbox</div>
+                <div class="filter-btn" data-filter="ns">Switch</div>
+            </div>
+        </div>
+
+        <div class="game-table-container">
+            <div class="game-row xbox" data-search="上古卷轴4：湮灭复刻版 上古卷轴4 老滚4 上古卷轴4重制 老滚4重制">
+                <div class="game-title">上古卷轴4：湮灭复刻版</div>
+                <div class="platform-tag" style="background: var(--platform-xbox);">Xbox</div>
+                <div class="game-time">42.7小时</div>
+                <div class="game-progress">全成就达成</div>
+                <div class="game-date">2025.05</div>
+            </div>
+
+            <div class="game-row steam" data-search="人中之龙维新！极 人中之龙维新极 如龙维新极">
+                <div class="game-title">人中之龙 维新！极</div>
+                <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                <div class="game-time">46.8小时</div>
+                <div class="game-progress">主线+全支线通关</div>
+                <div class="game-date">2025.05</div>
+            </div>
+
+            <div class="game-row steam" data-search="地下城3">
+                <div class="game-title">地下城3</div>
+                <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                <div class="game-time">37.5小时</div>
+                <div class="game-progress">全成就达成</div>
+                <div class="game-date">2025.02</div>
+            </div>
+
+            <div class="game-row steam" data-search="龙珠Z：卡卡罗特 龙珠Z：卡卡洛特 七龙珠Z 龙珠Z卡卡罗特">
+                <div class="game-title">龙珠Z：卡卡罗特</div>
+                <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                <div class="game-time">42.1小时</div>
+                <div class="game-progress">全成就达成</div>
+                <div class="game-date">2025.02</div>
+            </div>
+
+            <div class="game-row steam" data-search="黑暗之魂3 黑魂3">
+                <div class="game-title">黑暗之魂3</div>
+                <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                <div class="game-time">101.6小时</div>
+                <div class="game-progress">全成就达成</div>
+                <div class="game-date">2025.01</div>
+            </div>
+
+            <div class="game-row steam" data-search="心流小筑">
+                <div class="game-title">心流小筑</div>
+                <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                <div class="game-time">105.3小时</div>
+                <div class="game-progress">全成就达成</div>
+                <div class="game-date">2024.12</div>
+            </div>
+
+            <div class="game-row steam" data-search="星空 星空之地">
+                <div class="game-title">星空</div>
+                <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                <div class="game-time">116.9小时</div>
+                <div class="game-progress">全成就达成</div>
+                <div class="game-date">2024.10</div>
+            </div>
+
+            <div class="game-row steam" data-search="滞困：异星黎明 滞困异星黎明">
+                <div class="game-title">滞困：异星黎明</div>
+                <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                <div class="game-time">75.1小时</div>
+                <div class="game-progress">全成就达成</div>
+                <div class="game-date">2024.10</div>
+            </div>
+
+            <div class="game-row steam" data-search="骑马与砍杀：火与剑 骑马与砍杀火与剑 骑砍火与剑">
+                <div class="game-title">骑马与砍杀：火与剑</div>
+                <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                <div class="game-time">45.7小时</div>
+                <div class="game-progress">全成就达成</div>
+                <div class="game-date">2024.08</div>
+            </div>
+
+            <div class="game-row steam" data-search="叛乱：沙漠风暴 叛乱沙漠风暴 叛乱沙暴">
+                <div class="game-title">叛乱：沙漠风暴</div>
+                <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                <div class="game-time">33.6小时</div>
+                <div class="game-progress">全成就达成</div>
+                <div class="game-date">2024.08</div>
+            </div>
+
+            <div class="game-row steam" data-search="只狼：影逝二度 只狼影逝二度 只狼">
+                <div class="game-title">只狼：影逝二度</div>
+                <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                <div class="game-time">81.8小时</div>
+                <div class="game-progress">全成就达成</div>
+                <div class="game-date">2024.07</div>
+            </div>
+
+            <div class="game-row steam" data-search="Muv-Luv (マブラヴ) MuvLuv マブラヴ">
+                <div class="game-title">Muv-Luv (マブラヴ)</div>
+                <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                <div class="game-time">41.4小时</div>
+                <div class="game-progress">全成就达成</div>
+                <div class="game-date">2024.06</div>
+            </div>
+
+            <div class="game-row steam" data-search="选王之剑">
+                <div class="game-title">选王之剑</div>
+                <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                <div class="game-time">54.4小时</div>
+                <div class="game-progress">全成就达成</div>
+                <div class="game-date">2024.06</div>
+            </div>
+
+            <div class="game-row steam" data-search="人中之龙7：光与暗的去向 人中之龙7光与暗的去向 人中之龙7 如龙7">
+                <div class="game-title">人中之龙7：光与暗的去向</div>
+                <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                <div class="game-time">68.7小时</div>
+                <div class="game-progress">全成就达成</div>
+                <div class="game-date">2024.05</div>
+            </div>
+
+            <div class="game-row steam" data-search="信长之野望：大志 信长之野望大志 信长之野望15 信野15 信野大志">
+                <div class="game-title">信长之野望：大志</div>
+                <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                <div class="game-time">40.3小时</div>
+                <div class="game-progress">全成就达成</div>
+                <div class="game-date">2024.04</div>
+            </div>
+
+            <div class="game-row steam" data-search="机甲战魔">
+                <div class="game-title">机甲战魔</div>
+                <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                <div class="game-time">37.3小时</div>
+                <div class="game-progress">主线+全支线通关</div>
+                <div class="game-date">2024.03</div>
+            </div>
+
+            <div class="game-row steam" data-search="NBA2K23 2K23 美国篮球23">
+                <div class="game-title">NBA 2K23</div>
+                <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                <div class="game-time">70.2小时</div>
+                <div class="game-progress">辉煌生涯模式通关</div>
+                <div class="game-date">2024.02</div>
+            </div>
+
+            <div class="game-row steam" data-search="东方夜雀食堂 雀食">
+                    <div class="game-title">东方夜雀食堂</div>
+                    <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                    <div class="game-time">39.2小时</div>
+                    <div class="game-progress">全成就达成</div>
+                    <div class="game-date">2024.02</div>
+                </div>
+
+            <div class="game-row steam" data-search="战地风云2042 战地2042 2042">
+                    <div class="game-title">战地风云2042</div>
+                    <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                    <div class="game-time">74小时</div>
+                    <div class="game-progress">全成就达成</div>
+                    <div class="game-date">2023.11</div>
+                </div>
+
+            <div class="game-row steam" data-search="一起玩农场">
+                    <div class="game-title">一起玩农场</div>
+                    <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                    <div class="game-time">185.7小时</div>
+                    <div class="game-progress">全成就达成</div>
+                    <div class="game-date">2023.08</div>
+                </div>
+
+            <div class="game-row steam" data-search="喵斯快跑 MuseDash">
+                    <div class="game-title">喵斯快跑</div>
+                    <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                    <div class="game-time">43小时</div>
+                    <div class="game-progress">全成就达成</div>
+                    <div class="game-date">2023.04</div>
+                </div>
+
+            <div class="game-row steam" data-search="上古卷轴5：天际特别版 上古卷轴5 老滚5 上古卷轴5天际 老滚5天际">
+                    <div class="game-title">上古卷轴5：天际特别版</div>
+                    <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                    <div class="game-time">206.4小时</div>
+                    <div class="game-progress">全成就达成</div>
+                    <div class="game-date">2023.01</div>
+                </div>
+
+            <div class="game-row steam" data-search="飙酷车神2">
+                    <div class="game-title">飙酷车神2</div>
+                    <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                    <div class="game-time">112小时</div>
+                    <div class="game-progress">全成就达成</div>
+                    <div class="game-date">2023.01</div>
+                </div>
+
+                <div class="game-row steam" data-search="信长之野望创造：战国立志传 信长之野望创造战国立志传 战国立志传 信长之野望14创造战国立志传 信长之野望14 信野14 信野14外传">
+                    <div class="game-title">信长之野望创造：战国立志传</div>
+                    <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                    <div class="game-time">74.2小时</div>
+                    <div class="game-progress">全成就达成</div>
+                    <div class="game-date">2022.12</div>
+                </div>
+
+                <div class="game-row steam" data-search="装机模拟器">
+                    <div class="game-title">装机模拟器</div>
+                    <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                    <div class="game-time">138小时</div>
+                    <div class="game-progress">全成就达成</div>
+                    <div class="game-date">2022.10</div>
+                </div>
+
+                <div class="game-row steam" data-search="疯狂游戏大亨">
+                    <div class="game-title">疯狂游戏大亨</div>
+                    <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                    <div class="game-time">31.4小时</div>
+                    <div class="game-progress">全成就达成</div>
+                    <div class="game-date">2022.06</div>
+                </div>
+
+                <div class="game-row steam" data-search="逆转裁判123成步堂精选集 逆转裁判成步堂">
+                    <div class="game-title">逆转裁判123成步堂精选集</div>
+                    <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                    <div class="game-time">52.3小时</div>
+                    <div class="game-progress">全成就达成</div>
+                    <div class="game-date">2022.02</div>
+                </div>
+
+                <div class="game-row steam" data-search="刺客信条：起源 刺客信条起源">
+                    <div class="game-title">刺客信条：起源</div>
+                    <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                    <div class="game-time">113.1小时</div>
+                    <div class="game-progress">全成就达成</div>
+                    <div class="game-date">2022.02</div>
+                </div>
+
+                <div class="game-row steam" data-search="拳击俱乐部">
+                    <div class="game-title">拳击俱乐部</div>
+                    <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                    <div class="game-time">31小时</div>
+                    <div class="game-progress">全成就达成</div>
+                    <div class="game-date">2022.01</div>
+                </div>
+
+                <div class="game-row steam" data-search="噬神者3 弑神者3">
+                    <div class="game-title">噬神者3</div>
+                    <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                    <div class="game-time">54小时</div>
+                    <div class="game-progress">全成就达成</div>
+                    <div class="game-date">2022.01</div>
+                </div>
+
+                <div class="game-row steam" data-search="消逝的光芒 消光">
+                    <div class="game-title">消逝的光芒</div>
+                    <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                    <div class="game-time">135小时</div>
+                    <div class="game-progress">全成就达成</div>
+                    <div class="game-date">2022.01</div>
+                </div>
+
+                <div class="game-row steam" data-search="死亡搁浅 死亡搁浅原版">
+                    <div class="game-title">死亡搁浅</div>
+                    <div class="platform-tag" style="background: var(--platform-steam);">Steam</div>
+                    <div class="game-time">57.2小时</div>
+                    <div class="game-progress">主线+支线通关</div>
+                    <div class="game-date">2021.11</div>
+                </div>
+        </div>
+    </main>
+
+    <script>
+        const searchInput = document.querySelector('.game-search');
+        const gameRows = document.querySelectorAll('.game-row');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            gameRows.forEach(row => {
+                const gameData = row.getAttribute('data-search').toLowerCase();
+                row.style.display = gameData.includes(searchTerm) ? 'grid' : 'none';
+            });
+        });
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filterType = button.dataset.filter;
+                document.querySelector('.filter-btn.active').classList.remove('active');
+                button.classList.add('active');
+
+                gameRows.forEach(row => {
+                    if(filterType === 'all') {
+                        row.style.display = 'grid';
+                        return;
+                    }
+                    row.style.display = row.classList.contains(filterType) ? 'grid' : 'none';
+                });
+            });
+        });
+
+        const sortedRows = Array.from(gameRows).sort((a, b) => {
+            const dateA = new Date(a.querySelector('.game-date').textContent.replace('2025.', '2025-'));
+            const dateB = new Date(b.querySelector('.game-date').textContent.replace('2025.', '2025-'));
+            return dateB - dateA;
+        });
+
+        document.querySelector('.game-table-container').append(...sortedRows);
+    </script>
+</body>
+</html>
