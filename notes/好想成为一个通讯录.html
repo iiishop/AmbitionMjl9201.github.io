@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>好想成为一个通讯录 - 吾之野望のBlog</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .note-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 3rem 0;
+        }
+
+        .note-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(255, 105, 180, 0.2);
+        }
+
+        .note-icon {
+            width: 60px;
+            height: 60px;
+            padding: 12px;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .note-icon svg {
+            width: 36px;
+            height: 36px;
+            fill: #FF1493;
+        }
+
+        .note-title {
+            color: #FF1493;
+            font-size: 2rem;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .note-date {
+            color: var(--secondary-pink);
+            font-size: 0.95rem;
+            margin-left: auto;
+            padding: 0.5rem 1.2rem;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 12px;
+            align-self: flex-start;
+        }
+
+        .note-content {
+            line-height: 1.8;
+            margin-top: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .note-content p {
+            margin: 1.5rem 0;
+            opacity: 0.9;
+            text-indent: 2em;
+        }
+
+        .note-content::after {
+            content: '';
+            display: block;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-pink), transparent);
+            margin: 3rem 0;
+            opacity: 0.3;
+        }
+
+        @media (max-width: 768px) {
+            .note-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .note-date {
+                margin: 1rem auto 0;
+            }
+
+            .note-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="home-sidebar">
+        <div class="sidebar-header">
+            <img src="../波奇酱3-1.jpg" alt="头像" class="avatar">
+            <h2 class="sidebar-name">吾之野望</h2>
+            <p class="sidebar-bio">畅游游戏世界，重塑数字生活</p>
+        </div>
+
+        <nav class="sidebar-links">
+            <a href="../index.html">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+                首页
+            </a>
+            <a href="../about.html">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+                关于
+            </a>
+            <a href="../notes.html" class="active">
+                <svg viewBox="0 0 24 24">
+                    <path d="M14 17H4v2h10v-2zm6-8H4v2h16V9zM4 5h16v2H4V5z"/>
+                </svg>
+                笔记
+            </a>
+            <a href="https://space.bilibili.com/233399930/upload/opus"
+                target="_blank" 
+                rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                </svg>
+                文章
+            </a>
+            <a href="https://store.steampowered.com/curator/45339980/"
+                target="_blank" 
+                rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                </svg>
+                鉴赏
+            </a>
+            <a href="../games.html">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 12c0-1.1.9-2 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v4c1.1 0 2 .9 2 2v6c0 1.1.9 2 2 2h8v-6H8v-2h8v2h2zm-6-8h2v4h-2V4zm-4 0h2v4h-2V4zm8 14h-8v-6h8v6z"/>
+                </svg>
+                游戏馆
+            </a>
+            <a href="javascript:history.back()" class="sidebar-back-btn">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                </svg>
+                返回列表
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="https://github.com/AmbitionMjl9201" class="sidebar-footer-link" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.68-.22.68-.48 0-.24-.01-1.04-.01-2.04-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.88 1.53 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.68.92.68 1.85 0 1.34-.01 2.41-.01 2.74 0 .26.18.58.69.48A10 10 0 0 0 12 2z"/>
+                </svg>
+                GitHub
+            </a>
+            <a href="https://steamcommunity.com/id/AmbitionMjl9201/" class="sidebar-footer-link" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M17.7 8.34l-1.23 4.72L21 16.7l-4.75-.61L17.7 8.34m-7.4-.97L5.3 13.06l-4.1-1.68L8.66 6.7l2.64.66M19 2.01L7.85 5.56 3.12 1.24 19 2.01M1.92 15.01l2.84-2.82 1.43 1.43-2.84 2.82-1.43-1.43m18.73-1.43l-1.43-1.43 2.84-2.82 1.43 1.43-2.84 2.82M11 18.96l-6-2.25 1.33-3.64 6 2.25-1.33 3.64"/>
+                </svg>
+                Steam
+            </a>
+            <a href="https://space.bilibili.com/233399930" class="sidebar-footer-link" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                </svg>
+                Bilibili
+            </a>
+        </div>
+    </aside>
+
+    <main class="home-container">
+        <div class="note-container">
+            <div class="glass-card">
+                <div class="note-header">
+                    <div class="note-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-11H9v2h4v3h2V9h4V7h-6V4h-2v3z" fill="#FF1493"/>
+                        </svg>
+                    </div>
+                    <h1 class="note-title">好想成为一个通讯录</h1>
+                    <div class="note-date">2025.03.19</div>
+                </div>
+
+                <div class="note-content">
+                    <p style="text-align: right; margin-top: 2rem;">
+                        <a href="https://www.xiaoheihe.cn/app/bbs/link/149731058" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        class="external-link-btn">
+                            <svg viewBox="0 0 24 24" class="link-icon">
+                                <path d="M18 13h-5v5h-2v-5H6v-2h5V6h2v5h5v2z"/>
+                                <path d="M0 0h24v24H0z" fill="none"/>
+                            </svg>
+                            小黑盒原帖
+                            <span class="link-decoration"></span>
+                        </a>
+                    </p>
+
+                    <style>
+                    .external-link-btn {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.8rem;
+                        padding: 0.6rem 1.8rem 0.6rem 1.2rem;
+                        background: rgba(255, 105, 180, 0.15);
+                        border: 2px solid var(--primary-pink);
+                        color: var(--secondary-pink);
+                        text-decoration: none;
+                        font-weight: 500;
+                        border-radius: 12px;
+                        position: relative;
+                        overflow: hidden;
+                        backdrop-filter: blur(8px);
+                        transition: var(--transition);
+                        box-shadow: 4px 4px 0 rgba(255, 105, 180, 0.2);
+                    }
+                    
+                    .external-link-btn:hover {
+                        background: var(--primary-pink);
+                        color: white;
+                        transform: translateX(5px);
+                        box-shadow: 6px 6px 0 rgba(255, 105, 180, 0.3);
+                    }
+                    
+                    .external-link-btn:hover .link-decoration {
+                        width: 120%;
+                        background: white;
+                    }
+                    
+                    .link-icon {
+                        width: 20px;
+                        height: 20px;
+                        fill: currentColor;
+                        transition: transform 0.3s ease;
+                    }
+                    
+                    .external-link-btn:hover .link-icon {
+                        transform: translateX(3px);
+                        fill: white;
+                    }
+                    
+                    .link-decoration {
+                        position: absolute;
+                        right: -20%;
+                        bottom: 0;
+                        width: 0;
+                        height: 2px;
+                        background: var(--primary-pink);
+                        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                    }
+                    
+                    .external-link-btn:hover .link-decoration {
+                        right: -10%;
+                        width: 120%;
+                    }
+                    </style>
+
+                    <p>如题，lz是即将要和生活对线的女大，最近因各种事（特别是催婚）而喘不过气，有些压抑很久的话想写出来。</p>
+                    <p> </p>
+                    <p>我爸今年快50了，人生履历非常魔幻，大概就是，几乎没上过班，啃老三十年，爷爷奶奶掏空积蓄给他买房买车，让他伪装成有正经工作和生活的人，用这种欺骗手段娶了我妈，虽然我现在已经忘记我妈长什么样了。</p>
+                    <p>我对他最深刻的记忆，是沾满泥巴的鞋印从玄关一直延伸到客厅（他几乎不换拖鞋），以及永远弥漫着烟味的屋子，记得初中某个暴雨天，我蹲着擦他踩满泥巴的地板，他瘫在沙发上吞云吐雾，我那时想起了我小学的时候，他不让我去上学，还说：“女孩读那么多书没用，最后还不是要嫁人？”</p>
+                    <p>最后在亲戚的极力劝阻下，我才得以上学。（家里平时就天天吵架，但当时每天都格外吵，所以我记得很清楚）</p>
+                    <p> </p>
+                    <p>像上次这么害怕的还有初二那年，他抓住我，和爷爷一起骂我是“野种”，就因为我那几天在学校表现不是很好，又打听了妈妈的事。</p>
+                    <p>想到了那句话：我不希望变成妈妈那样的女人，再遇到爸爸这样的男人。</p>
+                    <p>总之，以上就是我对婚姻的全部认知。</p>
+                    <p> </p>
+                    <p>可能因为从小被嫌弃是女孩，我有段时间渴望变成男生。</p>
+                    <p>我剪过短发，衣柜里全是男款或中性的衣服，现在还会在网上发些奇怪的话，比如“好想被阉割啊”。</p>
+                    <p>我发帖写稿都不敢透露出自己的性别，只会偷偷给那些敢于说出自己是女玩家的人（不包括只发照片不聊游戏钓鱼的人）发私信和好友申请，因为过去的经历，导致我认为，在某些男性用户占多数的社区里面，作为女性就好像背负原罪。</p>
+                    <p>但今天，我实在是忍不住了，而且我没有别的社区可以求助了。</p>
+                    <p> </p>
+                    <p>我真的是一个“宅男”。</p>
+                    <p>我沉浸在自己的世界，天天玩游戏看二次元，最近还染上了拼模型，每月1200元生活费，500都拿去买游戏或买模型……</p>
+                    <p>我像宅男一样，很阴暗不爱说话，上次鼓起勇气和同学去漫展，因为一直手机打字交流，被戏称为“闪光的指压师”（命运石之门里面的桐生萌郁，靠手机和别人交流）</p>
+                    <p> </p>
+                    <p>我像大家印象里的女生一样爱玩模拟经营类游戏，特别是模拟人生4，但我又像个宅男。</p>
+                    <p>玩模拟人生4别人都是到处谈恋爱扩大家谱和大家社交什么的，而我是自建一个单人家庭，开始学技能，从游戏学到编程，再到写作绘画甚至火箭科学，邻居敲门也不理，就学技能，最后造出有情绪的机器人当家庭成员，就这么光正版都玩了100小时。</p>
+                    <p>我还存着一堆AI，经常半夜和虚拟人讨论怎么给高达渗线这种问题，或者是写奇怪的文字寻求AI的理解。</p>
+                    <p> </p>
+                    <p>回到前文说的催婚中，我现在这个状态，真的很难想象我和异性谈恋爱，这些经历导致我并不像传统意义中的女性，很难有人会喜欢我吧。</p>
+                    <p>然后就是我为什么那么抗拒结婚？因为我觉得人会被异化的。</p>
+                    <p>比如经常看到婚后的大家都抱怨说不幸福，说自己被婚姻毁了（此处修改过，可能不符合语境，并无攻击的意思）……</p>
+                    <p>我觉得这样是不对的，我们是活生生的人，而不是每个人都按部就班地去成为社会这个巨大机器中的齿轮，我觉得人至少要有点追求，而不是这个年龄应该做什么，就做什么……按我玩游戏好几年，1万小时总时长来看，至少我是不能接受因为生活而失去自我的。</p>
+                    <p> </p>
+                    <p>回到题目中来，我为什么想成为女同？</p>
+                    <p>如果我是女同，就能理直气壮告诉大家“反正结不了婚”，也能避免重复父母的悲剧。但问题在于：我只是希望用这个逃避生活，我根本不是女同，因为我会玩乙女游戏，看到符合xp的男生会紧张，会心跳加速。</p>
+                    <p> </p>
+                    <p>我为了伪装成女同，玩了很多百合GalGame，又看了很多百合文，有些时候会偷偷哭，特别羡慕里面女生互相照顾的样子。</p>
+                    <p>还看了很多同性恋内容，发现大家都在讨论形婚压力、出柜风险，也发现女同正在成为某种时尚单品……我意识到了自己这样把性少数群体当作挡箭牌很自私，可如果不这样，该怎么对抗铺天盖地的压力？</p>
+                    <p> </p>
+                    <p>我对同性恋这个群体了解的越多，就越愧疚，我发现她们要面对那么多压力，觉得自己像在拿别人的苦难当借口。</p>
+                    <p>我从未谈过恋爱，既怕耽误别人，也怕重蹈我那不记得长相的妈的覆辙，我在"假装女同"的道德压力和"向生活妥协"的恐惧间反复挣扎……</p>
+                    <p> </p>
+                    <p>经常感觉自己太难了，见到的人，有嫌我像宅男的女生，有嘲讽"女生懂什么硬核游戏"的男生，有时候会想：如果我是真正的女同，是否就能找到理解我的伴侣？是否就能避免传统婚姻的性别困境？但更多时候觉得，这不过是从一个牢笼逃向另一个谎言。</p>
+                    <p>我清楚爱情只是童话，婚姻本质是资源置换，但每当想到要和陌生人躺在同一张床上，就像被迫参加永远不能下线的强制PvP游戏，如果非要成为社会齿轮，至少让我选择契合的咬合方式吧？</p>
+                    <p> </p>
+                    <p>现在每天睡不着觉，盯着没玩的游戏和没拼完的高达发呆，如果结婚就是要把电脑和模型都收起来，每天围着生活转，那我宁愿永远单身。</p>
+                    <p>我上周回家，我爸还乱动我的模型，说：“再玩这些破塑料就别想要下个月生活费”。</p>
+                    <p>有时候想干脆去看心理医生，可是咨询费够买好多游戏和模型，也想过和网友说这些，害怕被骂“想太多”。</p>
+                    <p>那到底该怎么办啊？是不是不正常的人才会有这些想法？</p>
+                    <p> </p>
+                    <p>我明白我阅历浅，没有被社会毒打，写不出什么大道理，更不能清晰地描述出自己的恐惧。</p>
+                    <p>我感到害怕……如果十年后还在用游戏和模型对抗现实，我的人生会不会就像我那个被地板小精灵吃了零件的高达，永远缺了重要的部分？</p>
+                    <p> </p>
+                    <p>（想到哪写到哪，可能逻辑混乱、语言不通顺，并且问题太多了很可能得不到解答，作为树洞也好）</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="back-to-top" onclick="scrollToTop()">
+            <svg viewBox="0 0 24 24">
+                <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+            </svg>
+        </button>
+    </main>
+
+    <script>
+        document.querySelectorAll('.sidebar-back-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.history.back();
+            });
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const backToTop = document.querySelector('.back-to-top');
+            backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
+        });
+
+        document.querySelector('.avatar').addEventListener('click', () => {
+            window.open('https://space.bilibili.com/233399930', '_blank');
+        });
+    </script>
+</body>
+</html>

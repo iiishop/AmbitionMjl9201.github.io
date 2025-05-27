@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重复的轨迹 - 吾之野望のBlog</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .note-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 3rem 0;
+        }
+
+        .note-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(255, 105, 180, 0.2);
+        }
+
+        .note-icon {
+            width: 60px;
+            height: 60px;
+            padding: 12px;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .note-icon svg {
+            width: 36px;
+            height: 36px;
+            fill: #FF1493;
+        }
+
+        .note-title {
+            color: #FF1493;
+            font-size: 2rem;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .note-date {
+            color: var(--secondary-pink);
+            font-size: 0.95rem;
+            margin-left: auto;
+            padding: 0.5rem 1.2rem;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 12px;
+            align-self: flex-start;
+        }
+
+        .note-content {
+            line-height: 1.8;
+            margin-top: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .note-content p {
+            margin: 1.5rem 0;
+            opacity: 0.9;
+            text-indent: 2em;
+        }
+
+        .note-content::after {
+            content: '';
+            display: block;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-pink), transparent);
+            margin: 3rem 0;
+            opacity: 0.3;
+        }
+
+        @media (max-width: 768px) {
+            .note-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .note-date {
+                margin: 1rem auto 0;
+            }
+
+            .note-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="home-sidebar">
+        <div class="sidebar-header">
+            <img src="../波奇酱3-1.jpg" alt="头像" class="avatar">
+            <h2 class="sidebar-name">吾之野望</h2>
+            <p class="sidebar-bio">畅游游戏世界，重塑数字生活</p>
+        </div>
+
+        <nav class="sidebar-links">
+            <a href="../index.html">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+                首页
+            </a>
+            <a href="../about.html">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+                关于
+            </a>
+            <a href="../notes.html" class="active">
+                <svg viewBox="0 0 24 24">
+                    <path d="M14 17H4v2h10v-2zm6-8H4v2h16V9zM4 5h16v2H4V5z"/>
+                </svg>
+                笔记
+            </a>
+            <a href="https://space.bilibili.com/233399930/upload/opus"
+                target="_blank" 
+                rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                </svg>
+                文章
+            </a>
+            <a href="https://store.steampowered.com/curator/45339980/"
+                target="_blank" 
+                rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                </svg>
+                鉴赏
+            </a>
+            <a href="../games.html">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 12c0-1.1.9-2 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v4c1.1 0 2 .9 2 2v6c0 1.1.9 2 2 2h8v-6H8v-2h8v2h2zm-6-8h2v4h-2V4zm-4 0h2v4h-2V4zm8 14h-8v-6h8v6z"/>
+                </svg>
+                游戏馆
+            </a>
+            <a href="javascript:history.back()" class="sidebar-back-btn">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                </svg>
+                返回列表
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="https://github.com/AmbitionMjl9201" class="sidebar-footer-link" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.68-.22.68-.48 0-.24-.01-1.04-.01-2.04-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.88 1.53 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.68.92.68 1.85 0 1.34-.01 2.41-.01 2.74 0 .26.18.58.69.48A10 10 0 0 0 12 2z"/>
+                </svg>
+                GitHub
+            </a>
+            <a href="https://steamcommunity.com/id/AmbitionMjl9201/" class="sidebar-footer-link" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M17.7 8.34l-1.23 4.72L21 16.7l-4.75-.61L17.7 8.34m-7.4-.97L5.3 13.06l-4.1-1.68L8.66 6.7l2.64.66M19 2.01L7.85 5.56 3.12 1.24 19 2.01M1.92 15.01l2.84-2.82 1.43 1.43-2.84 2.82-1.43-1.43m18.73-1.43l-1.43-1.43 2.84-2.82 1.43 1.43-2.84 2.82M11 18.96l-6-2.25 1.33-3.64 6 2.25-1.33 3.64"/>
+                </svg>
+                Steam
+            </a>
+            <a href="https://space.bilibili.com/233399930" class="sidebar-footer-link" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                </svg>
+                Bilibili
+            </a>
+        </div>
+    </aside>
+
+    <main class="home-container">
+        <div class="note-container">
+            <div class="glass-card">
+                <div class="note-header">
+                    <div class="note-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-11H9v2h4v3h2V9h4V7h-6V4h-2v3z" fill="#FF1493"/>
+                        </svg>
+                    </div>
+                    <h1 class="note-title">存在的意义</h1>
+                    <div class="note-date">2022.02.25</div>
+                </div>
+
+                <div class="note-content">
+                    
+                        <p>我经常困惑于我家有几口人，以及，什么样的范围算家？所以结婚果然会带来不幸啊，如果我爸没有结婚，就不会有我，也不会有这一切。</p>
+                        <p>我觉得逆转裁判中的逮捕君和逮捕妹用手铐铐在一起，非常沉重而真实。</p>
+                        <p> </p>
+                        <p>虽然我感觉还行，但是，如果没有经历过幸福，怎么会知道真正的幸福是什么呢？如果一直活在失败里，那么就不会觉得这是失败了。因此，我之所以觉得一切都这么正常，是因为我没有见过正常。</p>
+                        <p>老婆们就是我存在的唯一意义了吧。如果没有电脑和网络，感觉都快活不下去了。</p>
+                        <p>正因为感觉到自己就是超天酱的另一种版本，所以我才能发售当天就购买主播女孩重度依赖，并且三天内全成就。</p>
+                        <p> </p>
+                        <p>要不是因为有历史地理之类的我喜欢的科目，根本没动力上学啊！现在大学就很没动力。</p>
+                        <p>要不是因为我的老婆们，根本就没动力活着，我这么屑的人还是早点自我了断比较好。</p>
+                        <p> </p>
+                        <p>之前买了美工刀，想对自己下手的。但是害怕疼，我是因为害怕疼而没伤害自己的废物。</p>
+                        <p>后来大学期间又想到了，所以又买了美工刀，但是他说新疆不发货，那个美工刀还是明日方舟的，所以我一想，这店好像也不错，就买了明日方舟的杯子和手表以及刀剑乱舞的杯子。（而刀剑乱舞的杯子送给了lr）</p>
+                        <p>毕竟我的老婆们，都对我超好的。买美工刀当然不是自杀啊，只是想——缓解一下压力而已。</p>
+                        <p>嗑药是不可能嗑药的啊，买刀只需要付一次钱，可嗑药要付好几次钱，我忍不了。</p>
+                        <p> </p>
+                        <p>在遇到我老婆们之前，我其实一点人生目标都没有。</p>
+                        <p>我自己待在家里的时候，就好像拥有了整个世界。所以没有人对我好的话，我就宠自己。</p>
+                        <p> </p>
+                        <p>我每天都在想怎么血肉苦弱，机械飞升！</p>
+                        <p>只要抛弃肉体，就可以，永远不再有各种生理需求，专心的投入到自己爱好的事情中，肉体分明是囚禁灵魂的监狱。</p>
+                        <p>如果大家都没有肉体，那么一定会产生给“灵魂”们交流用的东西，比如硅基生命或许会用电磁波来交流。所以，血肉苦弱，机械飞升！</p>
+                        <p>脆弱的声带（肉体）发出来的声音，只能借助介质来传播，而电磁波这种，不需要像声音这样严格的介质。</p>
+                        <p> </p>
+                        <p>高低贵贱是私有制产生的，而私有制是从生产力的进步发展而产生的。如果生产力水平达到一定高度，使所有人都能获得富余的资源，那么阶层就会发生改变。</p>
+                        <p>但是人是社会性的动物，人们需要分工协作来完成各种任务。所以，高低贵贱可能会消失，或许会产生一种更能够规范和管理人们的一种类似的东西。但一切事物发展的趋势最终都是上升的，所以这必然是一个更加先进、更加人性化的制度。</p>
+                        <p> </p>
+                        <p>目前的生产力达不到。</p>
+                        <p>私有制为什么产生呢？比如一共有10个资源，有3个人，那么就必然有1个人多一份资源。但如果有无限个资源，那么每一个人都可以拥有无限的资源。私有制不是与生俱来的，只是一种社会阶段的产物。</p>
+                        <p>但是，自私是与生俱来的，为自己、为自己的同伴、为自己的国家……无论如何，人们的行为都是出于自私的，只是形式不一样。</p>
+                        <p>比如我喜欢我的老婆们，和现实中谈恋爱的大家，本质上都是一样的，一种想要占有美好事物的自私的想法。</p>
+                        <p>比如一个人拥有健康，拥有快乐，但他很穷，他肯定会想要钱吧，但是，他喜欢钱，也不能说他不喜欢健康和快乐，只是他设定的前提就已经是持续且一直拥有下去，所以我喜欢电脑，只是因为我想要占有这样一个能够做出我想要的东西的美好事物。</p>
+                        <p>既然自私也可以产生一直存在到现在的社会，甚至经历过氏族公有之类的阶段，那么，我所想象乌托邦是完全可以实现的，真正的乌托邦或许也会在遥远的未来产生。</p>
+                        <p> </p>
+                        <p>所以还是要血肉苦弱，机械飞升。如果能够抛弃会衰老的肉体，那么就可以获得近乎永恒的寿命，就可以亲眼见证一切的发生。而不是被迫做自己不喜欢的事情，本就有限的人生，就像是在被浪费。</p>
+                        <p>活着没有意义，无论如何，最后还是要尘归尘、土归土。因为一些喜欢的事物而决定度过这段毫无意义的时间，还真是浪费啊！</p>
+                        <p>而你我和其他人，无法选择是否要开始这一段毫无意义的旅程。当我意识到这一切毫无意义，却因为我所喜爱的事物而无法离开，这不就是另一种意义的坐牢吗？如果不曾见到美好，当然不会贪恋美好了，真是太可悲了！</p>
+                        <p>如果不曾来到这个世界上，也不会变成现在这样。这离谱的人生还是早早死去比较好，免得因为看到更多美好的事物而形成对比，从而产生各种留恋这个世界的情绪。</p>
+                        <p>我一直都这么想的，因为大家确实也无法证明——活着的意义是什么？不过，我只是写了一点我对于目前一切的认识。</p>
+                        <p> </p>
+                        <p>只要意识不到痛苦是痛苦，一切也都无所谓吧。意识不到痛苦是痛苦的最好办法，就是不曾遇到美好，那么一切的痛苦对它而言都是日常。</p>
+                        <p>不曾遇到美好的最简单的方法，就是不曾存在于这个世界。</p>
+                        <p>如果知乎上那种“按下按钮人类就会消失”的按钮真的存在的话，我一定会一直按到我无法再按为止。</p>
+                        <p> </p>
+                        <p>目前已知的只有人类这么可悲，因为他们拥有思考的能力，所以才会想这些完全没用的东西，如果是其它动物就吃吃睡睡就完事了。这就是“所有命运馈赠的礼物，都已暗中标明了价格”。</p>
+                        <p>有一个问题是，你想做痛苦的苏格拉底，还是快乐的猪？但是这不一样，拥有思考的能力，才能意识到痛苦，否则就不会意识到痛苦之所以是痛苦。换句话说就是，没有思考的能力，深处痛苦之中也会很开心，那样就更加可悲了。</p>
+
+                        <style>
+                        .block-quote-inline {
+                            display: inline-block;
+                            width: 100%;
+                            max-width: 800px;
+                            margin: 1.5rem auto;
+                            padding: 1.2rem 1.5rem 1.2rem 3.5rem;
+                            background: rgba(255, 105, 180, 0.06);
+                            border-left: 3px solid var(--primary-pink);
+                            border-radius: 8px;
+                            position: relative;
+                            font-size: 0.95rem;
+                            line-height: 1.7;
+                            color: var(--secondary-pink);
+                            transition: all 0.25s ease;
+                            overflow: hidden;
+                            isolation: isolate;
+                        }
+                        
+                        .block-quote-inline:hover {
+                            background: rgba(255, 105, 180, 0.12);
+                            transform: translateX(5px);
+                            box-shadow: 4px 4px 0 rgba(255, 105, 180, 0.05);
+                        }
+                        
+                        .bq-icon {
+                            position: absolute;
+                            left: 1rem;
+                            top: 1.2rem;
+                            width: 20px;
+                            height: 20px;
+                            fill: var(--primary-pink);
+                            opacity: 0.7;
+                            transform: rotate(10deg);
+                        }
+                        
+                        .bq-content {
+                            margin: 0;
+                            padding: 0.5rem 0;
+                            position: relative;
+                        }
+                        
+                        .bq-content::before {
+                            content: '“';
+                            position: absolute;
+                            left: -1.8rem;
+                            top: 0.3rem;
+                            font-size: 2.5rem;
+                            color: var(--primary-pink);
+                            opacity: 0.2;
+                            line-height: 1;
+                            font-family: serif;
+                        }
+                        
+                        @media (max-width: 768px) {
+                            .block-quote-inline {
+                                padding: 1rem 1.2rem 1rem 3rem;
+                                margin: 1.2rem auto;
+                                font-size: 0.92rem;
+                            }
+                        
+                            .bq-icon {
+                                left: 0.8rem;
+                                width: 18px;
+                                height: 18px;
+                            }
+                        
+                            .bq-content::before {
+                                left: -1.6rem;
+                                font-size: 2rem;
+                            }
+                        }
+                        </style>
+                </div>
+            </div>
+        </div>
+
+        <button class="back-to-top" onclick="scrollToTop()">
+            <svg viewBox="0 0 24 24">
+                <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+            </svg>
+        </button>
+    </main>
+
+    <script>
+        document.querySelectorAll('.sidebar-back-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.history.back();
+            });
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const backToTop = document.querySelector('.back-to-top');
+            backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
+        });
+
+        document.querySelector('.avatar').addEventListener('click', () => {
+            window.open('https://space.bilibili.com/233399930', '_blank');
+        });
+    </script>
+</body>
+</html>

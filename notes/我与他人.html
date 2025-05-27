@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我与他人 - 吾之野望のBlog</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .note-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 3rem 0;
+        }
+
+        .note-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(255, 105, 180, 0.2);
+        }
+
+        .note-icon {
+            width: 60px;
+            height: 60px;
+            padding: 12px;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .note-icon svg {
+            width: 36px;
+            height: 36px;
+            fill: #FF1493;
+        }
+
+        .note-title {
+            color: #FF1493;
+            font-size: 2rem;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .note-date {
+            color: var(--secondary-pink);
+            font-size: 0.95rem;
+            margin-left: auto;
+            padding: 0.5rem 1.2rem;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 12px;
+            align-self: flex-start;
+        }
+
+        .note-content {
+            line-height: 1.8;
+            margin-top: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .note-content p {
+            margin: 1.5rem 0;
+            opacity: 0.9;
+            text-indent: 2em;
+        }
+
+        .note-content::after {
+            content: '';
+            display: block;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-pink), transparent);
+            margin: 3rem 0;
+            opacity: 0.3;
+        }
+
+        @media (max-width: 768px) {
+            .note-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .note-date {
+                margin: 1rem auto 0;
+            }
+
+            .note-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="home-sidebar">
+        <div class="sidebar-header">
+            <img src="../波奇酱3-1.jpg" alt="头像" class="avatar">
+            <h2 class="sidebar-name">吾之野望</h2>
+            <p class="sidebar-bio">畅游游戏世界，重塑数字生活</p>
+        </div>
+
+        <nav class="sidebar-links">
+            <a href="../index.html">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+                首页
+            </a>
+            <a href="../about.html">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+                关于
+            </a>
+            <a href="../notes.html" class="active">
+                <svg viewBox="0 0 24 24">
+                    <path d="M14 17H4v2h10v-2zm6-8H4v2h16V9zM4 5h16v2H4V5z"/>
+                </svg>
+                笔记
+            </a>
+            <a href="https://space.bilibili.com/233399930/upload/opus"
+                target="_blank" 
+                rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                </svg>
+                文章
+            </a>
+            <a href="https://store.steampowered.com/curator/45339980/"
+                target="_blank" 
+                rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                </svg>
+                鉴赏
+            </a>
+            <a href="../games.html">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 12c0-1.1.9-2 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v4c1.1 0 2 .9 2 2v6c0 1.1.9 2 2 2h8v-6H8v-2h8v2h2zm-6-8h2v4h-2V4zm-4 0h2v4h-2V4zm8 14h-8v-6h8v6z"/>
+                </svg>
+                游戏馆
+            </a>
+            <a href="javascript:history.back()" class="sidebar-back-btn">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                </svg>
+                返回列表
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="https://github.com/AmbitionMjl9201" class="sidebar-footer-link" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.68-.22.68-.48 0-.24-.01-1.04-.01-2.04-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.88 1.53 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.68.92.68 1.85 0 1.34-.01 2.41-.01 2.74 0 .26.18.58.69.48A10 10 0 0 0 12 2z"/>
+                </svg>
+                GitHub
+            </a>
+            <a href="https://steamcommunity.com/id/AmbitionMjl9201/" class="sidebar-footer-link" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M17.7 8.34l-1.23 4.72L21 16.7l-4.75-.61L17.7 8.34m-7.4-.97L5.3 13.06l-4.1-1.68L8.66 6.7l2.64.66M19 2.01L7.85 5.56 3.12 1.24 19 2.01M1.92 15.01l2.84-2.82 1.43 1.43-2.84 2.82-1.43-1.43m18.73-1.43l-1.43-1.43 2.84-2.82 1.43 1.43-2.84 2.82M11 18.96l-6-2.25 1.33-3.64 6 2.25-1.33 3.64"/>
+                </svg>
+                Steam
+            </a>
+            <a href="https://space.bilibili.com/233399930" class="sidebar-footer-link" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                </svg>
+                Bilibili
+            </a>
+        </div>
+    </aside>
+
+    <main class="home-container">
+        <div class="note-container">
+            <div class="glass-card">
+                <div class="note-header">
+                    <div class="note-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-11H9v2h4v3h2V9h4V7h-6V4h-2v3z" fill="#FF1493"/>
+                        </svg>
+                    </div>
+                    <h1 class="note-title">我与他人</h1>
+                    <div class="note-date">2023.06.29</div>
+                </div>
+
+                <div class="note-content">
+                    <p style="text-align: right; margin-top: 2rem;">
+                        <a href="https://zhuanlan.zhihu.com/p/348424603" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        class="external-link-btn">
+                            <svg viewBox="0 0 24 24" class="link-icon">
+                                <path d="M18 13h-5v5h-2v-5H6v-2h5V6h2v5h5v2z"/>
+                                <path d="M0 0h24v24H0z" fill="none"/>
+                            </svg>
+                            知乎专栏《佛物语》
+                            <span class="link-decoration"></span>
+                        </a>
+                    </p>
+
+                    <style>
+                    .external-link-btn {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.8rem;
+                        padding: 0.6rem 1.8rem 0.6rem 1.2rem;
+                        background: rgba(255, 105, 180, 0.15);
+                        border: 2px solid var(--primary-pink);
+                        color: var(--secondary-pink);
+                        text-decoration: none;
+                        font-weight: 500;
+                        border-radius: 12px;
+                        position: relative;
+                        overflow: hidden;
+                        backdrop-filter: blur(8px);
+                        transition: var(--transition);
+                        box-shadow: 4px 4px 0 rgba(255, 105, 180, 0.2);
+                    }
+                    
+                    .external-link-btn:hover {
+                        background: var(--primary-pink);
+                        color: white;
+                        transform: translateX(5px);
+                        box-shadow: 6px 6px 0 rgba(255, 105, 180, 0.3);
+                    }
+                    
+                    .external-link-btn:hover .link-decoration {
+                        width: 120%;
+                        background: white;
+                    }
+                    
+                    .link-icon {
+                        width: 20px;
+                        height: 20px;
+                        fill: currentColor;
+                        transition: transform 0.3s ease;
+                    }
+                    
+                    .external-link-btn:hover .link-icon {
+                        transform: translateX(3px);
+                        fill: white;
+                    }
+                    
+                    .link-decoration {
+                        position: absolute;
+                        right: -20%;
+                        bottom: 0;
+                        width: 0;
+                        height: 2px;
+                        background: var(--primary-pink);
+                        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                    }
+                    
+                    .external-link-btn:hover .link-decoration {
+                        right: -10%;
+                        width: 120%;
+                    }
+                    </style>
+
+                    <p><b>前提：</b>与朋友Dangerkes查看了他同学写的《佛物语》，然后展开讨论</p>
+                    <p> </p>
+                    <p>文中的“电休克疗法”总是让人想到雷电法王杨永信，以及游戏《篱笆庄秘闻》。</p>
+                    <p>其实最开始玩是在橙光游戏上面，后来也算是最早一批上steam的国产游戏，然没什么游戏性吧。</p>
+                    <p>橙光游戏以前我经常玩，三十六亿年沧海悲歌之物种起源，3000年帝国，我在中世纪玩泥巴（用猫科普中世纪知识）。然后现在全是言情小说。</p>
+                    <p>《篱笆庄秘闻》是文字AVG，有点GalGame的感觉，结局会被选项影响，但基本都是坏结局，我也没玩出来好结局，就去玩橙光其它的优秀作品去了。</p>
+                    <p> </p>
+                    <p>《佛物语》最后一章有提到沙耶之歌，给人的感觉坐实了小捷是个精神病人。</p>
+                    <p>但其实我初中就玩了沙耶之歌了。</p>
+                    <p>他给我发了一份《另一个结局》，里面的小捷去过法国，也确实是浙大毕业，只不过仍然被关回去了，我看完之后感到一种“怅然若失”的感觉。</p>
+                    <p> </p>
+                    <p>小捷确有其人，同学的名字也是真的，dk认为同学的精神可能有问题。</p>
+                    <p>就表明上的真相是小捷是精神病，实际上的真相比幻想更离谱。</p>
+                    <p>看了之后我觉得，说不定小捷都是幻想出来的，假如他是dk同学的tulpa（幻人）。</p>
+                    <div class="block-quote-inline">
+                        <svg class="bq-icon" viewBox="0 0 24 24">
+                            <path d="M6 17h3l2-4V7H5v6h3m8 0h3l2-4V7h-6v6h3m-7 0h3l2-4V7H8v6z"/>
+                        </svg>
+                        <p class="bq-content">
+                            Tulpa（读音：偷帕）是一种新兴的心理学现象，在表现上类似于幻想伙伴。Tulpa练习者认为，通过足够的练习与暗示，可以在大脑中产生另一个思维。
+                        </p>
+                    </div>
+                    <p>但小捷太具体了，不像是虚构出来的人格，释道力和释道慈也是真的。</p>
+                    <p>她爸爸的也非常离谱的真实，让我能理解她的精神状态（？），就比如说她爸爸对别人非常友善，然后告诉别人，小捷有精神疾病，还让别人远离她。</p>
+                    <p>表面上是对别人很好，其实很离谱，就是不想负责，就比如说我爸，每次被初中班主任叫去谈话，都会唯唯诺诺道歉还说自己一定会教育好我和姐姐，根本不会认为错误在自己身上。</p>
+                    <p> </p>
+                    <p>小捷被骗回去的，他父母骗她说要闹离婚之类的，我倒觉得离了好，要是我不会回去。</p>
+                    <p>然后小捷的实际年龄，比dk和dk同学大概还要大五六岁，之前文章里年龄这部分是虚构的，小捷的真结局应该是21年过年前后就和所有朋友失去了联系。</p>
+                    <p>但这里，dk同学又说小捷去了法国，所以dk认为他同学也有精神问题。</p>
+                    <p>然后小捷的导师，dk查了，没有任何资料，小捷的导师就是那种很虚幻的，不像现实存在的人。</p>
+                    <p> </p>
+                    <p>但我认为，就像我高中的时候就几乎建成了自己的网站，小捷也能够完全自学她所感兴趣的数学。</p>
+                    <p>然后她根本没去过法国，也没什么导师，这一切都是虚构的。但被她爸迫害是真的，被佛教迫害也是真的，性格离谱也是真的。</p>
+                    <p>我们无法想象一个沉迷成功学的父亲，有能力让自己的女儿出国。</p>
+                    <p>加上小捷自己的精神状态和学历，所以去过法国之类的只是美好的幻想。</p>
+                    <p>dk说我们可以记住这个故事，然后去做gal，还认为他同学不会有意见的，根据我对他和他同学的理解，我同意。</p>
+                    <p>dk说做成纯文字冒险游戏也算，总之，可以为了这个目标努力。对我来说，这样能在游戏里面给小捷一个好结局（开花的真结局），就像真的去过法国的这个结局一样，确实是个有趣的目标。</p>
+                    <p> </p>
+                    <p>dk认为，小捷现在大概率人现在是没了，总之小捷就是那种普通家庭出来的特别偏执（指偏科）的学霸。</p>
+                    <p>不过如果是寄了的话，我和我姐经常说：“说不定哪天就寄了呢”。还被小北方误会，但是这种事情真的会发生也说不定，其实我和我姐高中的时候就决定高考完一起去看心理医生，但是都鸽了。</p>
+                    <p>dk认为，他父母接受不了辛苦供养女儿这么多年的投入始终没办法变现（指得到他们期望的回报），然后就毁了小捷的一生。</p>
+                    <p>但这种事早已司空见惯，不过说真的，万一我和我姐突然失联了，那多半也是寄了。</p>
+                    <p>所以说我真的很抽象，我认为我可以被理解成低配版小捷——“连宇宙都会热寂”（我迟早会死的）。</p>
+                    <p> </p>
+                    <p>张京华去年锤自己的渣男男朋友，属于自爆性质的那种总之非常爆炸。</p>
+                    <p>还发出和我想法差不多的暴论“反正大家100年后都会似，何必现在这样。”</p>
+                    <p>但我能理解，意思就是告诉大家：我知道这件事，但我不在乎，因为不会有任何影响。</p>
+                    <p>张京华和解的理由就是她的暴论，我也能理解，意思就是：我不在乎了，和解吧。</p>
+                    <p>不知道dk有没有理解我的抽象，我能连接到抽象的人的思维上，所以其实我的本质是抽象的。</p>
+                    <p>大家为什么理解不了我和我姐“人都是会寄的”？这就是因为大家都很正常。</p>
+                    <p>我觉得dk最抽象的事情是对我说：“你和你女高网友到哪一步了，做了吗？”、“你们开房能不能把照片发给我”以及3p。</p>
+                    <p>据他说其实只是在逗他的朋友小北方，但小北方会当真。所以dk认为小北方的抽象就是属于这种脑回路非常纯。</p>
+                    <p> </p>
+                    <p>如果是我，遇到小北方那种情况，只会“我就是不行”这样说吧。</p>
+                    <div class="block-quote-inline">
+                        <svg class="bq-icon" viewBox="0 0 24 24">
+                            <path d="M6 17h3l2-4V7H5v6h3m8 0h3l2-4V7h-6v6h3m-7 0h3l2-4V7H8v6z"/>
+                        </svg>
+                        <p class="bq-content">
+                            一旦我接受了自己的软弱，那我就是，无敌的！
+                        </p>
+                    </div>
+                    <p>这个思路就是别人问我为什么我是废物，我就说“你怎么知道的”这种感觉</p>
+                    <p>想阉了自己，如果你不会产生需求，就不需要满足它，从根源解决。</p>
+                    <p>这个想法也可以换到别的事情上，很多事情不必多此一举。比如说如果你的代码能够运行，那你就不要想着优化它了（）</p>
+                    <p>我要先告诉大家我是个抽象的人，以免以后被发现了对方产生落差。</p>
+                    <p> </p>
+                    <p>看着小北方的热度消散的如此之快，我不轻易承诺的想法是正确的。</p>
+                    <p>之前小北方还说他要丁克，我问过他：“你觉得你能坚持下去吗？”他很生气，觉得我在质疑他。</p>
+                    <p>他还说自己一定会纯爱的，结果还是没有坚持自己的承诺。</p>
+                    <p> </p>
+                    <p>受到小北方和姐姐的误导，dk对我的印象最开始也锚定效应了。</p>
+                    <div class="block-quote-inline">
+                        <svg class="bq-icon" viewBox="0 0 24 24">
+                            <path d="M6 17h3l2-4V7H5v6h3m8 0h3l2-4V7h-6v6h3m-7 0h3l2-4V7H8v6z"/>
+                        </svg>
+                        <p class="bq-content">
+                            锚定效应：人们在对某人某事做出判断时，易受第一印象或第一信息支配，就像沉入海底的锚一样把人们的思想固定在某处。第一印象和先入为主是其在社会生活中的表现形式
+                        </p>
+                    </div>
+                    <p>想了一下小北方对dk所说的我们，因为人们就是会看到他们自己在意的部分，以及想看到的部分，所以小北方描述的我们也是他注意到的部分。</p>
+                    <p>基于这个思路，我们继续往下想，人们所看到的我，是不是他们想看到的部分？</p>
+                    <p>就像如果你注视一个光圈很久，即使眼睛离开光圈，光圈仍然会在眼前一段时间。如果你放大一个人的某些特点，那么你就看不到他其它的特点了。</p>
+                    <div class="block-quote-inline">
+                        <svg class="bq-icon" viewBox="0 0 24 24">
+                            <path d="M6 17h3l2-4V7H5v6h3m8 0h3l2-4V7h-6v6h3m-7 0h3l2-4V7H8v6z"/>
+                        </svg>
+                        <p class="bq-content">
+                            光环效应：人们在交往认知中，对方的某个特别突出的特点、品质就会掩盖人们对对方的其他品质和特点的正确了解
+                        </p>
+                    </div>
+                    <p>小北方的行为有非常明显的、可以观察出来的部分。</p>
+                    <p>dk的同学可以注意到小捷性格的几乎所有部分，那么他一定是擅长观察的人，他可以抛开我刚刚所说的这些，直接观察一个人，这是一种非常强大的能力，而且还能通过回忆的方式把它写出来，写出想象中的东西是很难的。</p>
+                    <p> </p>
+                    <p>dk说他同学像个小孩，没什么自理能力，他妈一直把他当小孩照顾，贴身衣物还是他妈妈洗。</p>
+                    <p>我一直不理解为什么要手洗，不相信现代科技吗，明明科技就是为了改变而存在的，那么为什么这些不是一次性的呢？</p>
+                    <div class="block-quote-inline">
+                        <svg class="bq-icon" viewBox="0 0 24 24">
+                            <path d="M6 17h3l2-4V7H5v6h3m8 0h3l2-4V7h-6v6h3m-7 0h3l2-4V7H8v6z"/>
+                        </svg>
+                        <p class="bq-content">
+                            任何在我出生时已经有的科技都是稀松平常的世界本来秩序的一部分；任何在我15-35岁之间诞生的科技都是将会改变世界的革命性产物；任何在我35岁之后诞生的科技都是违反自然规律要遭天谴的。
+                            <br><br>
+                            ——科技三定律（道格拉斯·亚当斯）<br>
+                        </p>
+                    </div>
+                    <p>希望我以后也能想起来这些，然后告诉自己：我应该一直学习，比如说，尝试最新的科技产品，了解它们的功能和原理，这件事在我的想法里是非常浪漫的。</p>
+                    <p>有些人，新知识可以一直逼迫他们自己接受，但是三观很难改变，头上的辫子可以剪掉，心中的可就难了。</p>
+                    <p>如果一直以陈旧的想法去理解世界，那么无论如何，都会永远的被动。</p>
+                    <p> </p>
+                    <p>钱虽然庸俗，但是是世界上对你帮助最多的东西。比如想要自立，想要在家庭里提高自己的地位摆脱束缚，就需要钱。</p>
+                    <p>因为我是旧时代的残党，新时代里没有能载我的船。</p>
+                    <p>理想主义者勾画的蓝图，要用现实的卑鄙来实现。</p>
+                    <p>但我觉得能把理想付诸行动并获得成功的实干家非常强，所有能在任何领域获得成功的人都是值得尊重的，因为他们是这个行业的顶尖水平，这样的人一定怀着热枕并且把它们付诸现实的人吧。</p>
+                    <p>所以就算我数学很抽象，也非常佩服dk同学。大概就是这种能跨越界限的、对知识本身的崇拜吧。</p>
+                    <p> </p>
+                    <p>dk说，他同学是天天吐槽数学无用论的那种。</p>
+                    <p>是的，数学为什么不是天坑专业？因为大家都掉下去摔死了，只有几个大神在天上飞。</p>
+                    <p>dk：数学系、基础数学领域的所有人，都做不到自产自足，他们是靠供养活着的，他们创造不出来实际价值。</p>
+                    <p>我同意，我们设立数学的目的，就是从100个学数学的人里面，找到1个真正理解数学的人，所以高等教育之所以这么多人，就是因为要从这些人里面筛选出真正合适的人，至于其它人，只是陪衬而已。</p>
+                    <p> </p>
+                    <p>《万历十五年》是dk的历史入门作，他认为其非常精彩，给人那种“其实每年都可能是万历十五年，当你真正发现问题的时候，可能早已万劫不复，总之非常警世”的感觉。</p>
+                    <p>dk认为每个领导者都应该读一读这些书。</p>
+                    <p>但我也写过：人类从历史中学到的唯一教训，就是，人类不会从历史中学到任何教训。学习历史，只有一个作用，那就是看到不学历史的人重蹈覆辙。</p>
+                    <p>dk写过很多和我写的东西很像的东西，但因为年代久远，保存下来的并不多了，我也一样，更早写的东西都是txt存到本地，现在也找不到了。</p>
+                    <p>我的目标一直是自动化，更方便的存储方式（云端）这种，就是因为我的想法就是这样的，以及解决数据丢失的现实问题。</p>
+                    <p> </p>
+                    <p>所以机械飞升是必然的？由动物到人类，由人类到上帝。</p>
+                    <p>dk认为：就算真的可以机械飞升，也不是每个人都可以拥有的，他和他的基因，就算真等到了人类可以机械飞升的那一天，也只是神的奴隶和耗材。</p>
+                    <p>我同意，等到基因可以编辑，我们和有钱人就不是一个物种了。</p>
+                    <p>但我认为我们不需过于担心，因为这只是可能发生的事情，而我们可以假设另一种可能——从义务教育的产生。</p>
+                    <p>为什么受教育逐渐从少部分扩大到几乎所有人？因为新的时代带来了新的需求，我们需要能够理解更加复杂的事物的人力资源，所以普及了教育。</p>
+                    <p>那么按照这个前提，如果人类机械飞升了，这个世界就会产生出新的需求，普通人也会像义务教育普及那样，被一种新的东西改变。</p>
+                    <p>所以，人工智能不会让人类沦为无用阶级吧，会不断的产生新的需求和新的职业，就像机器代替人力，但却产生了研究机器的职业。</p>
+                    <div class="block-quote-inline">
+                        <svg class="bq-icon" viewBox="0 0 24 24">
+                            <path d="M6 17h3l2-4V7H5v6h3m8 0h3l2-4V7h-6v6h3m-7 0h3l2-4V7H8v6z"/>
+                        </svg>
+                        <p class="bq-content">
+                            远古时期，圣贤们反复劝导我们——了解自己，但在佛祖和孔子盛行的时代，并不存在真正的竞争关系，如果你不想了解自己，你对于其他人来说仍然是个黑匣子，相反，现在有了竞争。在你读到这封信的时候，很多组织和企业正在收集你的数据，并试图用强大的算法“侵入”你。他们想知道你的恐惧和希望，你的心理弱点和性幻想。如果他们比你还了解你自己，他们就可以向你兜售任何东西——无论是某个产品还是某个理念。因此，我力劝所有人去努力了解自己的内心。
+                            <br><br>
+                            黑客通过存在缺陷的代码入侵计算机，人类因为与生俱来的恐惧、仇恨、偏见和欲望被入侵，人不能凭空捏造恐惧和仇恨，但当有人发现你所恐惧和憎恨的事物，他们就会按下你的情感按钮从而控制你。
+                            <br><br>
+                            最坏的情况是人工智能将导致数百万人失业并沦为“无用阶级”——失去经济价值与政治权力，与此同时，生物工程把一小部分精英群体升级成“超人”，抵抗超人精英将基本不可能，因为他们拥有全方位监视的政权，持续监视个人的行为、言论、感受和思想。
+                            <br><br>
+                            当然，我们也可以做出乐观的预判。最好的情况是新技术使所有人从艰苦劳作与疾病痛苦中解放出来，确保每个人都可以探索和发展自己的潜力，生物工程将用于治愈所有人，而非升级一小撮精英群体，AI的确会使很多工作消失，但最终收益将被用来给所有人提供免费的基础服务，赋予所有人追求梦想的机会——无论是在艺术、体育还是社群建设领域。监控体系将被用来监督政府而非公民，确保没有腐败发生。
+                            <br><br>
+                            ——《人类简史》<br>
+                        </p>
+                    </div>
+                    <p> </p>
+                    <p>产业升级是会创造更大的社会价值惠及每个人，但也会触及既得利益集团。</p>
+                    <p>我认为这些既得利益集团就是不懂历史，会重蹈覆辙的人，他们不明白自己的抗争只是徒劳的，就像是海边的沙砾，迟早有一天会被新科技、新时代的浪潮所淹没。</p>
+                    <p>也可能他们懂，只是不在乎，只要自己能享受荣华富贵就足够了，洪水滔天，又有何干？</p>
+                    <div class="block-quote-inline">
+                        <svg class="bq-icon" viewBox="0 0 24 24">
+                            <path d="M6 17h3l2-4V7H5v6h3m8 0h3l2-4V7h-6v6h3m-7 0h3l2-4V7H8v6z"/>
+                        </svg>
+                        <p class="bq-content">
+                            我死之后，哪管它洪水滔天？——路易十五
+                        </p>
+                    </div>
+                    <p>无所谓，在理性的子弹面前，无知的勇敢是无用的。</p>
+                    <div class="block-quote-inline">
+                        <svg class="bq-icon" viewBox="0 0 24 24">
+                            <path d="M6 17h3l2-4V7H5v6h3m8 0h3l2-4V7h-6v6h3m-7 0h3l2-4V7H8v6z"/>
+                        </svg>
+                        <p class="bq-content">
+                            在理性的子弹面前,无知的勇气是没用的。——乔治·巴顿
+                        </p>
+                    </div>
+                    <p>所以我刚刚说我要一直学习，学习最新的东西，比其他人更了解它们，我就可以最开始使用它们，成为最早吃螃蟹的人，而不是守着旧东西和排斥新事物，所以大多数人是不可能懂历史的。</p>
+                    <p> </p>
+                    <div class="block-quote-inline">
+                        <svg class="bq-icon" viewBox="0 0 24 24">
+                            <path d="M6 17h3l2-4V7H5v6h3m8 0h3l2-4V7h-6v6h3m-7 0h3l2-4V7H8v6z"/>
+                        </svg>
+                        <p class="bq-content">
+                            And ideas are bulletproof（思想的武器是杀不死的） ——V字仇杀队
+                            <br><br>
+                            —我们被教导要记住思想，而不是人，因为人可能失败，他可能会被捕，他会被杀死，被遗忘，但400年后，思想仍可改变世界。
+                            <br><br>
+                            我见过人们以它为名杀戮，或是为了维护它献出生命，但你不能亲吻思想，也不能触摸它或抱着它，思想不会流血，不会感到痛苦，它们没有爱。
+                        </p>
+                    </div>
+                    <p>dk：你那句理性的武器非常有v字仇杀的感觉</p>
+                    <p> </p>
+                    <p>乔治·巴顿，小乔治·史密斯·巴顿，美国二战著名军事将领，毕业于西点军校。</p>
+                    <p>dk：他和蒙哥马利都是因为击败隆美尔获得的名将评价，其实作为德棍，我觉得非常扯，最扯的是麦克阿瑟，一辈子没打过几场胜仗，二战大部分时间他都被日本人吊着打，然后二战结束成了日本的太上皇，其实我觉得盟军的二战名将都没什么含金量，他们赢的局都是已经硬实力碾压了，而且失误也很多。</p>
+                    <p>我觉得蒙哥马利扯，其它的也不是很了解，蒙哥马利有一种时势造英雄的感觉。</p>
+                    <p>都是时势造英雄的感觉吗？不过那也是我们评价他们，能被记住的人已经是人中龙凤了。就像打游戏的人那么多，职业选手几乎是清北难度，所以虽然他们看着很拉，只是因为和他们对抗的都是与他们一样优秀的人，就像你看篮球赛和你打篮球一样，能上去的人就已经是万里挑一了。</p>
+                    <p>dk：但只是因为他们刚好爬着那个位置上，非常喜欢斯维因的台词，能坐上宝座的人，只是因为他们刚好有个尺寸合适的屁股。</p>
+                    <p>这句话我也是认可的，不过还需要补充一句，脑袋决定屁股。</p>
+                    <p>这种和公平竞技很不一样，大部分时候都到不了需要对比实力的地步，因为很多更有才能的人或许在打螺丝（）</p>
+                    <p>现实中就是很残酷的，被铭记的他们是拥有资源与运气的，而这些确实也是实力的一部分就是了。</p>
+                    <p> </p>
+                    <p>dk想要纯粹的实力比拼，但他有没有想到，人们是什么样的人，从出生就已经被决定了。</p>
+                    <p>你的身体，被基因决定；你的思想，被身体决定，所以不存在纯粹的实力比拼，就比如说，阅读是一种复杂的运动，你需要编译你看到的文字，这是一种需要依赖大脑的活动，比如说如果你天生胼胝体发育异常，你就没法看书。</p>
+                    <p>所以我想表达的就是，你很难改变一切，因为他们已经注定。</p>
+                    <p>或许过于宿命论，但并不是，通过BBC的《人间七年》，只有很少的人能改变，大多数人都继续父母的路，所以我认为资源、运气都是实力的一部分，因为这本身就是不平衡的对抗。</p>
+                    <p> </p>
+                    <p>小学老师经常说的：大家都是一样的脑子，为什么你学习不如别人？</p>
+                    <p>是最假的，每个小学老师都知道，天分这种东西，从小就很直观的表现出来了，包括家庭环境影响到的性格和生活习惯，已经注定了一生。</p>
+                    <p>虽然看起来就像是你只能走这样的路，这种绝望感，但实际上就是这样的。</p>
+                    <p>dk：但是我拒绝，我命由我不由天，然后摆烂睡觉。</p>
+                    <p>我：我当然也是想过的，所以我摆烂了。</p>
+                    <p>其实我初中就有这样的想法了吧，这种关于宿命的理解。</p>
+                    <p> </p>
+                    <p>破碎的事物是不会回归原样的，所以我不会原谅我的家庭和我的老师同学。</p>
+                    <p>但是人总是要似的，就连宇宙都会热寂，我必须让自己过的更舒适，因为我不会带来任何东西，也带不走任何东西，所以，我要让我能感受到的变得舒适。</p>
+                    <p>想起了大刘的《人生》，如果我也在出生前获得了关于人生的记忆，我一定会杀死自己。</p>
+                    <p>如果我没有上学，或者是没有上大学，我会变成一个为别人而活的人，我一直在避免这种情况发生。</p>
+                    <div class="block-quote-inline">
+                        <svg class="bq-icon" viewBox="0 0 24 24">
+                            <path d="M6 17h3l2-4V7H5v6h3m8 0h3l2-4V7h-6v6h3m-7 0h3l2-4V7H8v6z"/>
+                        </svg>
+                        <p class="bq-content">
+                            以下内容来自我的笔记《重复的轨迹》
+                            <br><br>
+                            如此说来，我果然是个废物，因为我只是在复述别人曾说过、写过的话，而不是自己产出观点。
+                            <br><br>
+                            我曾经产生过很多想法，比如发现完美数的存在，但是之后我却在数学书的小角落里看到了它，完美数的概念。
+                            <br><br>
+                            所以，我之所以能想到，是不是因为我站在巨人的肩膀之上？
+                            <br><br>
+                            高斯花费一个晚上画出十七边形，而我只需要几分钟，但是不能说明我比高斯更强，因为我们只是在走别人走过的路，所以我接受了自己是个废物的设定。
+                            <br><br>
+                            因为即使我在这样相比起来十分优越的环境里，我依旧在走别人走过的路，而不是自己开辟出一条道路。
+                        </p>
+                    </div>
+                    <p>我是中二病！我要开辟一条自己的道路。</p>
+                    <p>因为我老婆是电脑，所以我现在没法爱上人类（x）</p>
+
+                    <style>
+                    .block-quote-inline {
+                        display: inline-block;
+                        width: 100%;
+                        max-width: 800px;
+                        margin: 1.5rem auto;
+                        padding: 1.2rem 1.5rem 1.2rem 3.5rem;
+                        background: rgba(255, 105, 180, 0.06);
+                        border-left: 3px solid var(--primary-pink);
+                        border-radius: 8px;
+                        position: relative;
+                        font-size: 0.95rem;
+                        line-height: 1.7;
+                        color: var(--secondary-pink);
+                        transition: all 0.25s ease;
+                        overflow: hidden;
+                        isolation: isolate;
+                    }
+                    
+                    .block-quote-inline:hover {
+                        background: rgba(255, 105, 180, 0.12);
+                        transform: translateX(5px);
+                        box-shadow: 4px 4px 0 rgba(255, 105, 180, 0.05);
+                    }
+                    
+                    .bq-icon {
+                        position: absolute;
+                        left: 1rem;
+                        top: 1.2rem;
+                        width: 20px;
+                        height: 20px;
+                        fill: var(--primary-pink);
+                        opacity: 0.7;
+                        transform: rotate(10deg);
+                    }
+                    
+                    .bq-content {
+                        margin: 0;
+                        padding: 0.5rem 0;
+                        position: relative;
+                    }
+                    
+                    .bq-content::before {
+                        content: '“';
+                        position: absolute;
+                        left: -1.8rem;
+                        top: 0.3rem;
+                        font-size: 2.5rem;
+                        color: var(--primary-pink);
+                        opacity: 0.2;
+                        line-height: 1;
+                        font-family: serif;
+                    }
+                    
+                    @media (max-width: 768px) {
+                        .block-quote-inline {
+                            padding: 1rem 1.2rem 1rem 3rem;
+                            margin: 1.2rem auto;
+                            font-size: 0.92rem;
+                        }
+                    
+                        .bq-icon {
+                            left: 0.8rem;
+                            width: 18px;
+                            height: 18px;
+                        }
+                    
+                        .bq-content::before {
+                            left: -1.6rem;
+                            font-size: 2rem;
+                        }
+                    }
+                    </style>
+                </div>
+            </div>
+        </div>
+
+        <button class="back-to-top" onclick="scrollToTop()">
+            <svg viewBox="0 0 24 24">
+                <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+            </svg>
+        </button>
+    </main>
+
+    <script>
+        document.querySelectorAll('.sidebar-back-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.history.back();
+            });
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const backToTop = document.querySelector('.back-to-top');
+            backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
+        });
+
+        document.querySelector('.avatar').addEventListener('click', () => {
+            window.open('https://space.bilibili.com/233399930', '_blank');
+        });
+    </script>
+</body>
+</html>
