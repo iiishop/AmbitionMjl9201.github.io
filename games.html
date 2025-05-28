@@ -607,7 +607,7 @@
         const paginationContainer = document.getElementById('pagination');
         const pageInfo = document.getElementById('page-info');
         
-        const rowsPerPage = 15;
+        const rowsPerPage = 20;
         let currentPage = 1;
         let currentFilter = 'all';
         let currentSearchTerm = '';
@@ -712,7 +712,7 @@
         const backToTopBtn = document.getElementById('backToTop');
         
         if (!backToTopBtn) {
-            console.error('返回顶部按钮未找到！请检查HTML结构');
+            console.error('返回顶部按钮未找到，检查HTML结构');
             return;
         }
     
