@@ -50,3 +50,15 @@ window.addEventListener('scroll', () => {
   const backToTop = document.querySelector('.back-to-top');
   backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
 });
+
+document.querySelector('.mobile-toggle').addEventListener('click', () => {
+    document.body.classList.toggle('sidebar-open');
+});
+ 
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.home-sidebar') && 
+        !e.target.closest('.mobile-toggle') && 
+        document.querySelector('.home-sidebar').classList.contains('active')) {
+        document.querySelector('.home-sidebar').classList.remove('active');
+    }
+});
