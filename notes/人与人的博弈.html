@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人与人的博弈 - 吾之野望のBlog</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .note-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 3rem 0;
+        }
+
+        .note-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(255, 105, 180, 0.2);
+        }
+
+        .note-icon {
+            width: 60px;
+            height: 60px;
+            padding: 12px;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .note-icon svg {
+            width: 36px;
+            height: 36px;
+            fill: #FF1493;
+        }
+
+        .note-title {
+            color: #FF1493;
+            font-size: 2rem;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .note-date {
+            color: var(--secondary-pink);
+            font-size: 0.95rem;
+            margin-left: auto;
+            padding: 0.5rem 1.2rem;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 12px;
+            align-self: flex-start;
+        }
+
+        .note-content {
+            line-height: 1.8;
+            margin-top: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .note-content p {
+            margin: 1.5rem 0;
+            opacity: 0.9;
+            text-indent: 2em;
+        }
+
+        .note-content::after {
+            content: '';
+            display: block;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-pink), transparent);
+            margin: 3rem 0;
+            opacity: 0.3;
+        }
+
+        @media (max-width: 768px) {
+            .note-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .note-date {
+                margin: 1rem auto 0;
+            }
+
+            .note-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="home-sidebar">
+        <div class="sidebar-header">
+            <img src="../波奇酱3-1.jpg" alt="头像" class="avatar">
+            <h2 class="sidebar-name">吾之野望</h2>
+            <p class="sidebar-bio">畅游游戏世界，重塑数字生活</p>
+        </div>
+
+        <nav class="sidebar-links">
+            <a href="../index.html">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+                首页
+            </a>
+            <a href="../about.html">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+                关于
+            </a>
+            <a href="../notes.html" class="active">
+                <svg viewBox="0 0 24 24">
+                    <path d="M14 17H4v2h10v-2zm6-8H4v2h16V9zM4 5h16v2H4V5z"/>
+                </svg>
+                笔记
+            </a>
+            <a href="https://space.bilibili.com/233399930/upload/opus"
+                target="_blank" 
+                rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                </svg>
+                文章
+            </a>
+            <a href="https://store.steampowered.com/curator/45339980/"
+                target="_blank" 
+                rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                </svg>
+                鉴赏
+            </a>
+            <a href="../games.html">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 12c0-1.1.9-2 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v4c1.1 0 2 .9 2 2v6c0 1.1.9 2 2 2h8v-6H8v-2h8v2h2zm-6-8h2v4h-2V4zm-4 0h2v4h-2V4zm8 14h-8v-6h8v6z"/>
+                </svg>
+                游戏馆
+            </a>
+            <a href="javascript:history.back()" class="sidebar-back-btn">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                </svg>
+                返回列表
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="https://github.com/AmbitionMjl9201" class="sidebar-footer-link" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.68-.22.68-.48 0-.24-.01-1.04-.01-2.04-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.88 1.53 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.68.92.68 1.85 0 1.34-.01 2.41-.01 2.74 0 .26.18.58.69.48A10 10 0 0 0 12 2z"/>
+                </svg>
+                GitHub
+            </a>
+            <a href="https://steamcommunity.com/id/AmbitionMjl9201/" class="sidebar-footer-link" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M17.7 8.34l-1.23 4.72L21 16.7l-4.75-.61L17.7 8.34m-7.4-.97L5.3 13.06l-4.1-1.68L8.66 6.7l2.64.66M19 2.01L7.85 5.56 3.12 1.24 19 2.01M1.92 15.01l2.84-2.82 1.43 1.43-2.84 2.82-1.43-1.43m18.73-1.43l-1.43-1.43 2.84-2.82 1.43 1.43-2.84 2.82M11 18.96l-6-2.25 1.33-3.64 6 2.25-1.33 3.64"/>
+                </svg>
+                Steam
+            </a>
+            <a href="https://space.bilibili.com/233399930" class="sidebar-footer-link" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                </svg>
+                bilibili
+            </a>
+        </div>
+    </aside>
+
+    <main class="home-container">
+        <div class="note-container">
+            <div class="glass-card">
+                <div class="note-header">
+                    <div class="note-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-11H9v2h4v3h2V9h4V7h-6V4h-2v3z" fill="#FF1493"/>
+                        </svg>
+                    </div>
+                    <h1 class="note-title">人与人的博弈</h1>
+                    <div class="note-date">2025.05.30</div>
+                </div>
+
+                <div class="note-content">
+                    
+                        <p>我很想吐槽我爸，我感觉他的思维非常离谱。</p>
+                        <p>举个例子就是，他特别喜欢苹果手机，这我也能理解，毕竟谁不喜欢高端电子产品，但是吧，他每次都会买二手老款苹果手机，买二手老款也就算了，毕竟苹果生态做的好，但是他这个人就很爱装，我的成绩，他给我买过的东西，还有他的苹果手机等，都是他装的材料。</p>
+                        <p>就想象一下一个邋遢肤色黑满脸痘坑看起来像小混混的人，掏出来破旧的老款苹果手机。</p>
+                        <p> </p>
+                        <p>他似乎没有明白评价一个人，认识一个人是多方面的。</p>
+                        <p>就像我即使说我玩过三国志全系列也没人怀疑，因为我游戏多还真玩过几部三国志还有大量补票经历，但如果是我小号那种一个三国志都没买，游戏时长还少的人去说，就没有人相信。</p>
+                        <p>这也就是他不明白的点：光有一个苹果手机又能怎么样呢？</p>
+                        <p>如果他干净，有礼貌，说话不要一惊一乍，就算他掏出他的二手苹果手机，说是几年前买的，都有人相信。</p>
+                        <p> </p>
+                        <p>所以，我感觉他非常喜欢白嫖（？），喜欢没条件，没门槛的东西，以及动不动就“交个朋友”这种思维，才一直过得不好。</p>
+                        <p>不经过买卖所产生的“交朋友”是一文不值的，当然这里买卖不是那种买卖，而是，我能给对方带来什么价值，以及，对方能带给我什么价值，我觉得这是一个互相“交易”而产生的。</p>
+                        <p>但是如果双方的价值不对等，因为是朋友而给对方便宜，他们就会不断习惯占便宜，并且理所当然+不尊重。</p>
+                        <p>就是说，自己不能贪小便宜，维系这种有价值的朋友，也不能占别人便宜，该付出就得付出。</p>
+                        <p>但是我爸不懂，别人给他个方便，他都不会去感谢一下人家，他就完美的、避开了所有正确的点，幻想通过白嫖得到帮助，而不想想自己给别人能带来什么，然后别人帮了他，他还要蹬鼻子上脸，所以他没有朋友。</p>
+                        <p> </p>
+                        <p>就是说，你有个朋友，他每次和你一起出去玩之类的，都要你请他，然后你帮他跑腿，他觉得理所当然，连感谢都没有，那你肯定不愿意把他当朋友了。</p>
+                        <p>而我爸就是这种人，所以他到了快50岁还是一事无成，因为他根本不懂，首先要让自己有价值，让自己给别人带来价值，才能得到别人的帮助，所以每一个帮助他的人都会消失。</p>
+                        <p>富在术数，不在劳身，利在势居，不在力耕，总之就是完全不懂。</p>
+                        <div class="block-quote-inline">
+                            <svg class="bq-icon" viewBox="0 0 24 24">
+                                <path d="M6 17h3l2-4V7H5v6h3m8 0h3l2-4V7h-6v6h3m-7 0h3l2-4V7H8v6z"/>
+                            </svg>
+                            <p class="bq-content">
+                                富在术数，不在劳身；利在势居，不在力耕也。——《盐铁论·卷一》
+                                <br><br>
+                                创造财富在于方法，不在于体力付出。获取利益的关键在于对局势和时机的把握，不在于单纯的体力耕作。
+                            </p>
+                        </div>
+                        <p>但凡看点书……</p>
+                        <p>还有就是贱不害智，贫不妨行。</p>
+                        <div class="block-quote-inline">
+                            <svg class="bq-icon" viewBox="0 0 24 24">
+                                <path d="M6 17h3l2-4V7H5v6h3m8 0h3l2-4V7h-6v6h3m-7 0h3l2-4V7H8v6z"/>
+                            </svg>
+                            <p class="bq-content">
+                                贱不害智，贫不妨行。——《盐铁论·卷四》
+                                <br><br>
+                                地位低贱不会影响才智，家境贫寒不会妨害德行。
+                            </p>
+                        </div>
+                        <p>说到这个，他每天都在说自己学英语，我上次让他写个家长要写的材料，他：Can I write in English？（大意，他写的好像不是这句，有很多错误）就好像别人没学过英语一样。</p>
+                        <p>我曾经刚学编程的时候，也是觉得自己无所不能，但是好就好在，我跟室友商量我每天教她编程，然后我才发现我有很多不足，很多问题解决不了，以及自己知道的没法说出来，但是他（爸爸）完全意识不到，属于是无知者的自大。</p>
+                        <p>要的是经过学习、深入了解后，确信自己掌握了的自信，而不是刚开始学就自大上了。</p>
+                        <p>他的世界好像只有他自己，其他人都是陪衬，所以他从来不想别人，虽然我也不想。</p>
+                        <p> </p>
+                        <p>总之呢，先歪楼回去，我仍要意识到人与人之间存在交流合作的可能。这个可能的产生是因为，集体行动满足了个人利益。</p>
+                        <p>个人的力量是渺小的，所以通过集体产生互利行为，就能将个体无法解决的问题让集体去解决，从而让集体中每个人都收益，我个人认为逻辑是这样，而不是我爸那种“损人不利己”。</p>
+                        <p>总要与人接触，总要去接触人，既然无法避免，就让这个过程和结果更加舒服。</p>
+                        <p>集体中也是一个个的个体，肯定不愿意去打白工，有共同的目标才能一起动，都获利才能都一起，也就是说只有利益分配让人人都觉得有利可图，人们才会服从这个集体的安排。</p>
+                        <p>而这个利益范围大点，是对自身发展和生存有正面作用的东西，毕竟地上有钱谁不原意捡？</p>
+                        <p>人类和其它动物都一样，首先要考虑的是生存问题，情感只是漫长进化过程中，通过自然选择，天生对奖励欢喜对惩罚厌恶，也就是说，本质上还是为了更好的生存。所以人的情感也永远只会偏向于未来长短期对自己有益的人。</p>
+                        <p> </p>
+                        <p>举个例子，大家从小关系好，但是涉及到财产争夺就会成为竞争对手，兄弟姐妹之间甚至能因此撕破脸皮，产生这个事情的关键就是当初维系兄弟姐妹之间的利益变了。</p>
+                        <p>他们过去是兄弟姐妹这个集体，而现在各自加入了新的集体，代表自己和新集体的利益，所以，某种方面来说利益的让渡本质就是在向未来的关系投资。</p>
+                        <p>还是兄弟姐妹这个例子，一个人他要结婚了，他就得争夺家产，因为他买房、买车等行为都是为了自己新的利益服务，以及未来的关系，大多数情况都是这样。</p>
+                        <p>总之这一切核心逻辑就是，人也是一种动物，要保证生存，而生存就要涉及到利益。</p>
+                        <p> </p>
+                        <p>而谁应该获利多？谁应该获利少？</p>
+                        <p>只索取而不付出会变成“自私”，久而久之，人们就会减少和他长期合作的可能性；而付出多于索取的人，人们都倾向于和他合作。</p>
+                        <p>所以，我爸他仍然不明白，他从来都没有意识到付出的重要性。确切来说，想要更好，就要专注于长远的利益，因此可以放弃短期利益。</p>
+                        <p> </p>
+                        <p>在博弈论里，我们简单分为单次博弈和长期博弈。</p>
+                        <div class="block-quote-inline">
+                            <svg class="bq-icon" viewBox="0 0 24 24">
+                                <path d="M6 17h3l2-4V7H5v6h3m8 0h3l2-4V7h-6v6h3m-7 0h3l2-4V7H8v6z"/>
+                            </svg>
+                            <p class="bq-content">
+                                博弈论（Game Theory），亦称对策论或赛局理论，既是现代数学的一个新兴分支，也是运筹学领域的关键学科。它专注于研究抽象激励结构间的互动，为分析具有对抗或竞争特性的现象提供了一套数学理论与方法。
+                            </p>
+                        </div>
+                        <p>简单来说，只进行一次的博弈，这就是单次博弈，每个参与者都只有一次机会，参与者必须谨慎地权衡利弊，做出最有利的决策，一旦失误就要面对巨大的损失。</p>
+                        <p>比如说目前拍卖了个二手冰箱，我的预期是几百元，但是价格被抬到了破千，这时候我肯定会倾向于不再出价，因为再出价的话损失大于收获，这就是我做出的有利于自己的决策，不盲目追求利益，是因为充分考虑了风险和后果。</p>
+                        <p> </p>
+                        <p>想起了囚徒困境——有两个人一起做坏事，结果被警察发现抓了起来，分别关在两个独立的不能互通信息的牢房里进行审讯。</p>
+                        <div class="block-quote-inline">
+                            <svg class="bq-icon" viewBox="0 0 24 24">
+                                <path d="M6 17h3l2-4V7H5v6h3m8 0h3l2-4V7h-6v6h3m-7 0h3l2-4V7H8v6z"/>
+                            </svg>
+                            <p class="bq-content">
+                                囚徒困境是博弈论的非零和博弈中具代表性的例子，用于描述在一种博弈情境下，个体之间可能面临的合作与背叛之间的冲突，反映个人最佳选择并非团体最佳选择。换句话说，行为主体面临选择的两难境地时，往往会趋向于考虑相对利己但是不利于集体最大利益的方式。
+                            </p>
+                        </div>
+                        <p>这种情况就是说，有两个选择：1.和警察合作，背叛同伙，自己获得减刑之类的；2.保持沉默。</p>
+                        <p>选择1的好处在于，肯定会得到利益，但是实际上最好的解法是两个人都保持沉默，只要他们拒不承认，警方难以给他们定罪，但是如果对方没有保持沉默呢？</p>
+                        <p>表面上看保持沉默是最好的选择，但是我不能赌对方会不会和我选择的一样，但是我选择伤害别人的做法，也就是出卖别人的做法，诱惑力也非常大，结果可能就导致了，双方都供出对方，结果双输。</p>
+                        <p>这个可能不够直观，就像是陷入两难境地需要相互之间有足够的了解与信任，拥有信任，才敢合作。</p>
+                        <p>总之，博弈的最佳选择是相互合作，但是一旦对方背叛，就会输的彻底，所以为了获取信任，求同存异+彼此妥协才是能把合作做下去的最好方法。</p>
+                        <p> </p>
+                        <p>这就是为什么我痛恨不搞纯爱的人——亲密关系是天然的博弈，追求的就是长期共赢，很像囚徒困境。</p>
+                        <p>两个人都有2个选择，纯爱，以及不搞纯爱，选择纯爱就像是两个囚徒都选择了保持沉默，必须要两个人都纯爱才有效。</p>
+                        <p>不然有人供出来对方获得减刑，对方保持沉默，对方损失最大化，也就是假设一个人出轨，他会获得最大的收益，但是他的另一半就是损失最大化。</p>
+                        <p>所以我希望对方和我都搞纯爱，追求双方的长期共赢，而不是，我付出，被对方背叛，让自己利益受损，让对方利益最大化。</p>
+                        <p> </p>
+                        <p>不止这个例子，这个社会上有很多事情都是相似的，人类其实是在经历各种博弈，所以必须要懂得，或是研究冲突对抗条件下的最优决策问题。</p>
+                        <p>那就要说回最开始说的了，所以说，大家相信我善良才会帮助我，就像大家觉得我搞纯爱，才会和我一起搞纯爱，而不是明知是一个花花公子，还希望他只有我一个人，他会从此抛下他的其它一切。</p>
+                        <p>总体来说就是，要让自己产生价值，让别人看到自己的价值，并从中获利，但是自身带有价值，如果被背叛，对方就会获得利益。</p>
+                        <p>如果价值得不到正面交换或者交换过程不能让双方受益，那么双方的关系就很难维持下去，所以我要在展现价值之类的同时，辨别对方会不会背叛我，其实也是博弈，以及，我看到对方的价值，根据对方的品德判断有没有长期合作的可能性。</p>
+                        <p>所以又回到最开始说的了：为了利益最大化，我爸这种贪小便宜的行为是不可取的，必须让对方看到自己能为对方带来什么，才能获得之后的帮助，而不是占一次便宜就再也没法获得帮助。</p>
+                        <p> </p>
+                        <p>总之，每次面对博弈，就想一下自己要搞纯爱需要怎么做（）</p>
+                        <p>但是我爸他完全不懂，他不会想长远利益，就像是和他结婚的人，从来不想他是不是可信的。</p>
+                        <p>就是说，要判断双方的价值，以及选择的后果，以及对方可不可信，大多数问题都可以用这个思路。</p>
+                        <p>先想这样的利益关系能不能成功，成功的话，我怎么做选择？对方怎么做选择？我们的选择导致什么后果？这些选择，是否有让自己利益受损的选项？以及，对方会不会为了自己的利益让我的利益受损？也就是很多解决问题的思路。</p>
+                        <p>所以以后遇到事情就想想，在搞纯爱的时候，我会怎么挑选，我会从哪想，也就是重复上面这些思考过程。</p>
+
+                        <style>
+                        .block-quote-inline {
+                            display: inline-block;
+                            width: 100%;
+                            max-width: 800px;
+                            margin: 1.5rem auto;
+                            padding: 1.2rem 1.5rem 1.2rem 3.5rem;
+                            background: rgba(255, 105, 180, 0.06);
+                            border-left: 3px solid var(--primary-pink);
+                            border-radius: 8px;
+                            position: relative;
+                            font-size: 0.95rem;
+                            line-height: 1.7;
+                            color: var(--secondary-pink);
+                            transition: all 0.25s ease;
+                            overflow: hidden;
+                            isolation: isolate;
+                        }
+                        
+                        .block-quote-inline:hover {
+                            background: rgba(255, 105, 180, 0.12);
+                            transform: translateX(5px);
+                            box-shadow: 4px 4px 0 rgba(255, 105, 180, 0.05);
+                        }
+                        
+                        .bq-icon {
+                            position: absolute;
+                            left: 1rem;
+                            top: 1.2rem;
+                            width: 20px;
+                            height: 20px;
+                            fill: var(--primary-pink);
+                            opacity: 0.7;
+                            transform: rotate(10deg);
+                        }
+                        
+                        .bq-content {
+                            margin: 0;
+                            padding: 0.5rem 0;
+                            position: relative;
+                        }
+                        
+                        .bq-content::before {
+                            content: '“';
+                            position: absolute;
+                            left: -1.8rem;
+                            top: 0.3rem;
+                            font-size: 2.5rem;
+                            color: var(--primary-pink);
+                            opacity: 0.2;
+                            line-height: 1;
+                            font-family: serif;
+                        }
+                        
+                        @media (max-width: 768px) {
+                            .block-quote-inline {
+                                padding: 1rem 1.2rem 1rem 3rem;
+                                margin: 1.2rem auto;
+                                font-size: 0.92rem;
+                            }
+                        
+                            .bq-icon {
+                                left: 0.8rem;
+                                width: 18px;
+                                height: 18px;
+                            }
+                        
+                            .bq-content::before {
+                                left: -1.6rem;
+                                font-size: 2rem;
+                            }
+                        }
+                        </style>
+                </div>
+            </div>
+        </div>
+
+        <button class="back-to-top" onclick="scrollToTop()">
+            <svg viewBox="0 0 24 24">
+                <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+            </svg>
+        </button>
+    </main>
+
+    <script>
+        document.querySelectorAll('.sidebar-back-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.history.back();
+            });
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const backToTop = document.querySelector('.back-to-top');
+            backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
+        });
+
+        document.querySelector('.avatar').addEventListener('click', () => {
+            window.open('https://space.bilibili.com/233399930', '_blank');
+        });
+    </script>
+    <button class="mobile-toggle" onclick="document.querySelector('.home-sidebar').classList.toggle('active')">
+        ☰ 菜单
+    </button>
+</body>
+</html>
