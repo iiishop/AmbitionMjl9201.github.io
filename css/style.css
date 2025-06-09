@@ -364,9 +364,15 @@ body {
     to { transform: translateY(-8px); }
 }
 
+@media (min-width: 769px) {
+    .mobile-toggle {
+        display: none !important;
+    }
+}
+
 @media (max-width: 768px) {
     body {
-        flex-direction: column; /* 纵向排列 */
+        flex-direction: column;
     }
     
     .home-sidebar {
@@ -558,6 +564,15 @@ body {
         border-radius: 20px;
         cursor: pointer;
         box-shadow: 0 3px 10px rgba(255, 105, 180, 0.3);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: var(--transition);
+    }
+ 
+    .mobile-toggle:hover {
+        transform: translateY(-2px);
+        background: var(--secondary-pink);
     }
  
     .timeline-dot {
