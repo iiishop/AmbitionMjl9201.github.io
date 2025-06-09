@@ -266,21 +266,74 @@
         @media (max-width: 768px) {
             body {
                 margin-left: 0;
+                display: block;
             }
             
             .home-sidebar {
                 width: 100%;
                 height: auto;
+                max-height: 60vh;
+                position: fixed;
+                bottom: 0;
+                transform: translateY(100%);
+                transition: transform 0.3s ease;
                 padding: 1rem;
+            }
+
+            .home-sidebar.active {
+                transform: translateY(0);
             }
             
             .home-container {
                 padding: 1rem;
+                min-height: calc(100vh - 60px);
+                margin: 60px 0 0;
             }
 
             .profile-header {
                 flex-direction: column;
                 text-align: center;
+            }
+ 
+            .profile-avatar {
+                width: 80px;
+                height: 80px;
+            }
+ 
+            .identity-tags {
+                justify-content: center;
+            }
+ 
+            .glass-card {
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+ 
+            .back-to-top {
+                right: 1rem;
+                bottom: 1rem;
+                width: 40px;
+                height: 40px;
+                animation: none;
+            }
+
+            @supports (padding: max(0px)) {
+                body {
+                    padding-bottom: env(safe-area-inset-bottom);
+                }
+            }
+        }
+ 
+        @media (min-width: 769px) {
+            body {
+                display: flex;
+                padding-bottom: 0 !important;
+            }
+            
+            .home-sidebar {
+                position: sticky;
+                top: 0;
+                height: 100vh;
             }
         }
     </style>
@@ -468,7 +521,8 @@
             window.open('https://space.bilibili.com/233399930', '_blank');
         });
     </script>
-    <button class="mobile-toggle" onclick="document.querySelector('.home-sidebar').classList.toggle('active')">
+    <button class="mobile-toggle" onclick="document.querySelector('.home-sidebar').classList.toggle('active')" 
+            style="position: fixed; bottom: 1rem; left: 1rem; z-index: 1003;">
         ☰ 菜单
     </button>
 </body>
