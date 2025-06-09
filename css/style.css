@@ -22,8 +22,10 @@ body {
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
-    margin-left: 260px;
+    margin-left: 0;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .home-sidebar {
@@ -154,11 +156,13 @@ body {
 
 .home-container {
     max-width: 900px;
+    width: 100%;
     padding: 1.5rem;
     position: relative;
     isolation: isolate;
     min-height: 100vh;
     background: var(--bg-color);
+    margin: 0 auto;
     padding: 2rem 3rem;
 }
 
@@ -171,15 +175,15 @@ body {
     bottom: 0;
     background: linear-gradient(
         135deg,
-        #FFB6C1 0%,  /* 增强粉色基底 */
-        #FFE4E8 30%, /* 保持粉色过渡 */
-        #FFF5F9 60%, /* 保留白色区域 */
+        #FFB6C1 0%,
+        #FFE4E8 30%,
+        #FFF5F9 60%,
         #FFFFFF 100%
     );
     background-attachment: fixed;
     z-index: -1;
     pointer-events: none;
-    opacity: 0.9; /* 增强整体显色度 */
+    opacity: 0.9;
 }
 
 .glass-card {
@@ -376,7 +380,8 @@ body {
     
     .home-container {
         padding: 1rem;
-    }
+        margin: 60px auto 0;
+        min-height: calc(100vh - 60px);
 
     .home-container::before {
         left: 0;
