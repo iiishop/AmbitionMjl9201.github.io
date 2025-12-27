@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>清教徒与自我约束 - 吾之野望のBlog</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .note-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 3rem 0;
+        }
+
+        .note-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(255, 105, 180, 0.2);
+        }
+
+        .note-icon {
+            width: 60px;
+            height: 60px;
+            padding: 12px;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .note-icon svg {
+            width: 36px;
+            height: 36px;
+            fill: #FF1493;
+        }
+
+        .note-title {
+            color: #FF1493;
+            font-size: 2rem;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .note-date {
+            color: var(--secondary-pink);
+            font-size: 0.95rem;
+            margin-left: auto;
+            padding: 0.5rem 1.2rem;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 12px;
+            align-self: flex-start;
+        }
+
+        .note-content {
+            line-height: 1.8;
+            margin-top: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .note-content p {
+            margin: 1.5rem 0;
+            opacity: 0.9;
+            text-indent: 2em;
+        }
+
+        .note-content::after {
+            content: '';
+            display: block;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-pink), transparent);
+            margin: 3rem 0;
+            opacity: 0.3;
+        }
+
+        @media (max-width: 768px) {
+            .note-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .note-date {
+                margin: 1rem auto 0;
+            }
+
+            .note-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="home-sidebar">
+        <div class="sidebar-header">
+            <img src="../波奇酱3-1.jpg" alt="头像" class="avatar">
+            <h2 class="sidebar-name">吾之野望</h2>
+            <p class="sidebar-bio">畅游游戏世界，重塑数字生活</p>
+        </div>
+
+        <nav class="sidebar-links">
+            <a href="../index.html">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+                首页
+            </a>
+            <a href="../about.html">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+                关于
+            </a>
+            <a href="../notes.html" class="active">
+                <svg viewBox="0 0 24 24">
+                    <path d="M14 17H4v2h10v-2zm6-8H4v2h16V9zM4 5h16v2H4V5z"/>
+                </svg>
+                笔记
+            </a>
+            <a href="https://space.bilibili.com/233399930/upload/opus"
+                target="_blank" 
+                rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                </svg>
+                文章
+            </a>
+            <a href="https://store.steampowered.com/curator/45339980/"
+                target="_blank" 
+                rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                </svg>
+                鉴赏
+            </a>
+            <a href="../games.html">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 12c0-1.1.9-2 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v4c1.1 0 2 .9 2 2v6c0 1.1.9 2 2 2h8v-6H8v-2h8v2h2zm-6-8h2v4h-2V4zm-4 0h2v4h-2V4zm8 14h-8v-6h8v6z"/>
+                </svg>
+                游戏馆
+            </a>
+            <a href="javascript:history.back()" class="sidebar-back-btn">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                </svg>
+                返回列表
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="https://github.com/AmbitionMjl9201" class="sidebar-footer-link" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.68-.22.68-.48 0-.24-.01-1.04-.01-2.04-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.88 1.53 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.68.92.68 1.85 0 1.34-.01 2.41-.01 2.74 0 .26.18.58.69.48A10 10 0 0 0 12 2z"/>
+                </svg>
+                GitHub
+            </a>
+            <a href="https://steamcommunity.com/id/AmbitionMjl9201/" class="sidebar-footer-link" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M17.7 8.34l-1.23 4.72L21 16.7l-4.75-.61L17.7 8.34m-7.4-.97L5.3 13.06l-4.1-1.68L8.66 6.7l2.64.66M19 2.01L7.85 5.56 3.12 1.24 19 2.01M1.92 15.01l2.84-2.82 1.43 1.43-2.84 2.82-1.43-1.43m18.73-1.43l-1.43-1.43 2.84-2.82 1.43 1.43-2.84 2.82M11 18.96l-6-2.25 1.33-3.64 6 2.25-1.33 3.64"/>
+                </svg>
+                Steam
+            </a>
+            <a href="https://space.bilibili.com/233399930" class="sidebar-footer-link" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                </svg>
+                bilibili
+            </a>
+        </div>
+    </aside>
+
+    <main class="home-container">
+        <div class="note-container">
+            <div class="glass-card">
+                <div class="note-header">
+                    <div class="note-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-11H9v2h4v3h2V9h4V7h-6V4h-2v3z" fill="#FF1493"/>
+                        </svg>
+                    </div>
+                    <h1 class="note-title">清教徒与自我约束</h1>
+                    <div class="note-date">2025.12.27</div>
+                </div>
+
+                <div class="note-content">
+                    <p style="text-align: right; margin-top: 2rem;">
+                        <a href="" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        class="external-link-btn">
+                            <svg viewBox="0 0 24 24" class="link-icon">
+                                <path d="M18 13h-5v5h-2v-5H6v-2h5V6h2v5h5v2z"/>
+                                <path d="M0 0h24v24H0z" fill="none"/>
+                            </svg>
+                            相关投稿：
+                            <span class="link-decoration"></span>
+                        </a>
+                    </p>
+
+                    <style>
+                    .external-link-btn {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.8rem;
+                        padding: 0.6rem 1.8rem 0.6rem 1.2rem;
+                        background: rgba(255, 105, 180, 0.15);
+                        border: 2px solid var(--primary-pink);
+                        color: var(--secondary-pink);
+                        text-decoration: none;
+                        font-weight: 500;
+                        border-radius: 12px;
+                        position: relative;
+                        overflow: hidden;
+                        backdrop-filter: blur(8px);
+                        transition: var(--transition);
+                        box-shadow: 4px 4px 0 rgba(255, 105, 180, 0.2);
+                    }
+                    
+                    .external-link-btn:hover {
+                        background: var(--primary-pink);
+                        color: white;
+                        transform: translateX(5px);
+                        box-shadow: 6px 6px 0 rgba(255, 105, 180, 0.3);
+                    }
+                    
+                    .external-link-btn:hover .link-decoration {
+                        width: 120%;
+                        background: white;
+                    }
+                    
+                    .link-icon {
+                        width: 20px;
+                        height: 20px;
+                        fill: currentColor;
+                        transition: transform 0.3s ease;
+                    }
+                    
+                    .external-link-btn:hover .link-icon {
+                        transform: translateX(3px);
+                        fill: white;
+                    }
+                    
+                    .link-decoration {
+                        position: absolute;
+                        right: -20%;
+                        bottom: 0;
+                        width: 0;
+                        height: 2px;
+                        background: var(--primary-pink);
+                        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                    }
+                    
+                    .external-link-btn:hover .link-decoration {
+                        right: -10%;
+                        width: 120%;
+                    }
+                    </style>
+
+                    <p>我是一个老保，我可以确信。</p>
+                    <p>我看起来会是什么样呢？或许是……FtM？同性恋？假小子？爱好男性化的武装直升机？总而言之，似乎都和老保毫无关系，甚至像是对立面的存在。</p>
+                    <p>但我能肯定，我确实是老保，因为我经常发表反对4i、反对婚前性行为（订婚也不行）、支持处女/处男情结等言论，还因此没少被人骂是“清朝人”。</p>
+                    <p>我甚至可以接受大男子主义，那种真正意义上的大男子主义——男性要有责任感，承担家庭的重担，而女性则是温柔贤惠的角色，大概是这种社会分工的大男子主义。</p>
+                    <p>原因只是，我认为它权责明确，类似这样的理由，并且我本身也是一条咸鱼，没有上进心。</p>
+                    <div class="block-quote-inline">
+                        <svg class="bq-icon" viewBox="0 0 24 24">
+                            <path d="M6 17h3l2-4V7H5v6h3m8 0h3l2-4V7h-6v6h3m-7 0h3l2-4V7H8v6z"/>
+                        </svg>
+                        <p class="bq-content">
+                            大男子主义（Male chauvinism）又称男性沙文主义，指在态度、行为等方面表现出男尊女卑或歧视女性的思想意识，常表现为男性在家庭和社会关系中占据绝对主导地位。
+                        </p>
+                    </div>
+                    <p>然后，我其实还反对同性恋，虽然我天天看GL和BL作品，幻想与一个同性相爱，但是我从未真正喜欢过同性（或许应该叫，从未对同性产生过欲望？），因为她们没法结婚。</p>
+                    <p>对，就是“没法结婚”这种奇怪的理由，我觉得那会失去法律的保障，无法保障对方和我的合法权利或是诉求，而且与我反对婚前性行为相悖。</p>
+                    <p>不过，这么说的话，仔细一想，我好像也从未对男性产生过欲望，毕竟都母胎单身23年了，但是无所谓，这不影响我认为自己是老保。</p>
+                    <p>总而言之，作为老保的我，渴望清教徒般的生活方式，也是可以被理解的吧。</p>
+                    <div class="block-quote-inline">
+                        <svg class="bq-icon" viewBox="0 0 24 24">
+                            <path d="M6 17h3l2-4V7H5v6h3m8 0h3l2-4V7h-6v6h3m-7 0h3l2-4V7H8v6z"/>
+                        </svg>
+                        <p class="bq-content">
+                            清教徒是对信徒群体信仰的一种统称，是最为虔敬、生活最为圣洁的新教徒，他们信奉加尔文主义（Calvinism），认为《圣经》才是唯一最高权威，任何教会或个人都不能成为传统权威的解释者和维护者。
+                        </p>
+                    </div>
+                    <p>“人人皆祭司，人人有召唤”，清教徒认为每个个体可以直接与上帝交流，反对神甫集团的专横、腐败、繁文缛节和形式主义。</p>
+                    <p>就像是马丁路德“因信称义”的那种感觉，由于基督在十字架上的救赎奇功，神人之间的阻隔已被排除，信徒凭借信仰就可以与上帝直接交通，而无须以教皇等教阶制度做中介。</p>
+                    <p>简单来说，人因信仰上帝和接受上帝的恩典而获得救赎，并在上帝面前被视为正义或义人。</p>
+                    <p>喜欢玩ck3的我，保守的我，憧憬基督教，甚至希望像清教徒一样生活，也是合理的吧。</p>
+                    <div class="block-quote-inline">
+                        <svg class="bq-icon" viewBox="0 0 24 24">
+                            <path d="M6 17h3l2-4V7H5v6h3m8 0h3l2-4V7h-6v6h3m-7 0h3l2-4V7H8v6z"/>
+                        </svg>
+                        <p class="bq-content">
+                            ck3，指游戏《十字军之王3》，坠入爱河、投身争斗、策划计谋、成就宏图伟业，在大战略游戏《Crusader Kings III》中书写你的贵族传承。死亡不过是下一场开始——在这个精彩纷呈、跃然纸上的中世纪模拟世界中，延续宗族血脉，谱写王朝史诗。
+                        </p>
+                    </div>
+                    <p>并非简单的苦修，我想要像清教徒那样，将信仰彻底融入日常，通过极致的自我约束和勤奋工作来荣耀上帝，并以此作为个人蒙受神恩的印证。</p>
+                    <p>我要专注于我认为最神圣、最重要的事物，并以此为标准简化生活、管理我的一切欲望。</p>
+                    <p>我该怎么做呢？毕竟是日记，写下来是最好的。</p>
+                    <p>首先，我要贯彻“勤俭清洁”的禁欲主义，加尔文思想认为人性本恶，充满贪欲，克制欲望是回应神恩、对抗罪恶本性的方式，所以，我应反对豪华、舒适与感官享乐，也就是我一直以来所做的，不抽烟喝酒打架，不买奢侈品，也不去酒吧、夜总会之类的地方。</p>
+                    <p>其次，“预定论”坚信上帝已预先选定得救者，成功与勤勉是蒙恩的征兆，但财富本身不是目的，不可用于奢侈享乐，也就是，世俗职业是上帝赋予的使命，通过勤奋工作和创造财富，能够荣耀神。</p>
+                    <div class="block-quote-inline">
+                        <svg class="bq-icon" viewBox="0 0 24 24">
+                            <path d="M6 17h3l2-4V7H5v6h3m8 0h3l2-4V7h-6v6h3m-7 0h3l2-4V7H8v6z"/>
+                        </svg>
+                        <p class="bq-content">
+                            预定论是基督教神学学说，主张上帝在创世前已预先决定人的命运，包括灵魂得救或受永罚，由教父哲学家奥古斯丁在4世纪提出，后由约翰·加尔文发展为系统化理论。该理论认为人的祸福得失由上帝预先安排，受永罚源于人的罪恶，尘世命运由上帝预定且不可违抗。
+                        </p>
+                    </div>
+                    <p>再次，参考“圣约神学”，整个社群是与上帝立约的，因此集体的道德纯净关乎所有人的命运，所以，更要反对放纵情欲，或是别的类似的行为。</p>
+                    <p>然后，为了上帝的荣耀，日常举止、服饰、时间管理都为了侍奉神，我要生活朴素以示谦卑。</p>
+                    <p>最后，我虽然是一个老保，但也是一个受过教育的现代人，既然“人人皆祭司”，无需通过神职人员即可直接与上帝交流，我应和现在一样，重视教育，以便人人能阅读《圣经》。</p>
+                    <p>当然，上面这些只是基于“清教徒”这个身份，我假设的，我可能的生活，实际上，我必须抛弃其中宗教的成分，虽然我已经阅读过好几遍圣经了。</p>
+                    <p>我也可以认为，加尔文主义远非一套冰冷的教义条文，而是一种塑造整个生命的世界观。</p>
+                    <div class="block-quote-inline">
+                        <svg class="bq-icon" viewBox="0 0 24 24">
+                            <path d="M6 17h3l2-4V7H5v6h3m8 0h3l2-4V7h-6v6h3m-7 0h3l2-4V7H8v6z"/>
+                        </svg>
+                        <p class="bq-content">
+                            加尔文主义是16世纪欧洲宗教改革时期由约翰·加尔文倡导的基督教新教神学体系，部分主张继承路德派神学传统，部分为独创性教义，以其著作《基督教原理》为理论基础，核心教义包括预定论和救恩独作说。该学说强调人类因原罪完全败坏无法自救，救赎完全依赖上帝无条件的拣选，主张基督代赎仅限蒙选者，并将神学总结为完全堕落、无条件拣选、有限救赎、不可抗拒恩典与圣徒永蒙保守等五项信条（“郁金香神学”）。
+                        </p>
+                    </div>
+                    <p>提到它，人联想到的是所谓的“五要点”、“郁金香”、冰冷的理性、思辨和宿命论式的思想，还有冷漠的加尔文主义者。</p>
+                    <p>但是，正如基督教本身一样，他们更像是一种基层治理组织，所以，加尔文主义也同样适用于生活中的一切，包括政治经济、艺术思想等，就像“这个世界上没有一寸空间不是属于耶稣基督的”。</p>
+                    <p>不过，说到底，我也只是在日记中开了一个关于“清教徒”的脑洞，而不是我真的成为了信徒。</p>
+                    <p>过度沉溺是不可取的，罪过不在于事物本身，而在于罪恶地运用它们，就比如为了感官满足而非维持生命。</p>
+                    <p>我应该是追求相同的“内在的苦修”，并且最好是源于对永恒救赎的热切渴望，而非痛恨世界。</p>
+                    <p>但清教徒创建的哈佛，其学生也会吸烟等，所以，或许完全的自我克制，即使在清教徒中也是持续的挣扎，我必须要把握好一个度。</p>
+                    <p>简而言之，我要“入世”，成为一个“入世的圣徒”，在世俗中活得神圣。</p>
+
+                    <style>
+                    .block-quote-inline {
+                        display: inline-block;
+                        width: 100%;
+                        max-width: 800px;
+                        margin: 1.5rem auto;
+                        padding: 1.2rem 1.5rem 1.2rem 3.5rem;
+                        background: rgba(255, 105, 180, 0.06);
+                        border-left: 3px solid var(--primary-pink);
+                        border-radius: 8px;
+                        position: relative;
+                        font-size: 0.95rem;
+                        line-height: 1.7;
+                        color: var(--secondary-pink);
+                        transition: all 0.25s ease;
+                        overflow: hidden;
+                        isolation: isolate;
+                    }
+                    
+                    .block-quote-inline:hover {
+                        background: rgba(255, 105, 180, 0.12);
+                        transform: translateX(5px);
+                        box-shadow: 4px 4px 0 rgba(255, 105, 180, 0.05);
+                    }
+                    
+                    .bq-icon {
+                        position: absolute;
+                        left: 1rem;
+                        top: 1.2rem;
+                        width: 20px;
+                        height: 20px;
+                        fill: var(--primary-pink);
+                        opacity: 0.7;
+                        transform: rotate(10deg);
+                    }
+                    
+                    .bq-content {
+                        margin: 0;
+                        padding: 0.5rem 0;
+                        position: relative;
+                    }
+                    
+                    .bq-content::before {
+                        content: '“';
+                        position: absolute;
+                        left: -1.8rem;
+                        top: 0.3rem;
+                        font-size: 2.5rem;
+                        color: var(--primary-pink);
+                        opacity: 0.2;
+                        line-height: 1;
+                        font-family: serif;
+                    }
+                    
+                    @media (max-width: 768px) {
+                        .block-quote-inline {
+                            padding: 1rem 1.2rem 1rem 3rem;
+                            margin: 1.2rem auto;
+                            font-size: 0.92rem;
+                        }
+                    
+                        .bq-icon {
+                            left: 0.8rem;
+                            width: 18px;
+                            height: 18px;
+                        }
+                    
+                        .bq-content::before {
+                            left: -1.6rem;
+                            font-size: 2rem;
+                        }
+                    }
+                    </style>
+                </div>
+            </div>
+        </div>
+
+        <button class="back-to-top" onclick="scrollToTop()">
+            <svg viewBox="0 0 24 24">
+                <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+            </svg>
+        </button>
+    </main>
+
+    <script>
+        document.querySelectorAll('.sidebar-back-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.history.back();
+            });
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const backToTop = document.querySelector('.back-to-top');
+            backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
+        });
+
+        document.querySelector('.avatar').addEventListener('click', () => {
+            window.open('https://space.bilibili.com/233399930', '_blank');
+        });
+    </script>
+    <button class="mobile-toggle" onclick="document.querySelector('.home-sidebar').classList.toggle('active')">
+        ☰ 菜单
+    </button>
+</body>
+</html>
